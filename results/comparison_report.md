@@ -34,6 +34,8 @@ Three server conditions tested across five matrix scripts.
 | **heap peak** | Maximum V8 heap usage recorded during the run in MB. |
 | **errors** | Count of non-200 HTTP responses (429, 502, 503) or client-side timeouts during the load phase. |
 
+**Note on sparse p95 latency charts:** The p95 latency subplot in each time-series chart shows the rolling window p95 — the 95th-percentile latency of all requests that completed within each ~5 s polling interval. At low request rates (3 RPM = one request every 20 s, 10 RPM = one every 6 s) most polling windows contain no completed requests, so the p95 reads as 0 and the line hugs the x-axis between spikes. This is expected behaviour, not missing data — the spikes are the actual latency observations.
+
 ---
 
 ## Aggregations

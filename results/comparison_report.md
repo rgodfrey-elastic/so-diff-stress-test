@@ -24,6 +24,18 @@ Three server conditions tested across five matrix scripts.
 
 ---
 
+## Metrics
+
+| Metric | Meaning |
+|---|---|
+| **p50 latency** | Median request round-trip time in milliseconds. Half of all requests completed faster than this. |
+| **p95 latency** | 95th-percentile latency — the slowest 5% of requests exceeded this. |
+| **ELU max** | Peak Event Loop Utilisation recorded during the run (0–1). Measures how busy the Kibana Node.js event loop was. Values above **0.80** indicate the server is at or above the serverless platform ceiling and requests will queue. Values of 1.0 mean the loop was fully saturated. |
+| **heap peak** | Maximum V8 heap usage recorded during the run in MB. |
+| **errors** | Count of non-200 HTTP responses (429, 502, 503) or client-side timeouts during the load phase. |
+
+---
+
 ## Aggregations
 
 ### p50 latency and ELU max per level

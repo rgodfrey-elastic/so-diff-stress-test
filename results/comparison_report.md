@@ -24,77 +24,19 @@ Three server conditions tested across five matrix scripts.
 
 ---
 
-## Testing Methodology
+## Aggregations
 
-### What is being tested
-
-The feature under test is `xpack.security.audit.savedObjectDiff` — a Kibana server-side feature that, when enabled, computes a field-level JSON diff of saved object state before and after every update and appends it to the audit log. The goal of this test is to measure the performance overhead of that feature under a variety of load shapes.
-
-### The stress test tool
-
-All tests use `so_diff_stress.js`, a Node.js script that drives load against a live Kibana instance over HTTP. It seeds a pool of `index-pattern` saved objects, then fires requests at a controlled rate and records latency and server health metrics from Kibana's status API.
-
-### Server conditions
-
-Each matrix was run three times — once per condition. The server config was changed by modifying `config/serverless.yml` and redeploying the PR Docker image to the QA serverless environment between runs.
-
-| Condition | What changed |
-|---|---|
-| **off** | `xpack.security.audit.enabled: false` — no audit logging at all, used as the performance baseline |
-| **audit** | Audit enabled with a console appender; `savedObjectDiff` not configured — audit events are written but no diffs are computed |
-| **diff** | Same as audit, plus `savedObjectDiff.enabled: true` and `typesToInclude: ["index-pattern"]` — diffs are computed and included in audit events |
-
-Comparing off→audit isolates the cost of audit event writes. Comparing audit→diff isolates the cost of diff computation itself.
-
-### Key parameters
-
-| Parameter | What it controls |
-|---|---|
-| `--pool N` | Number of saved objects seeded before the run. Requests are drawn from this pool. |
-| `--rpm N` | Target request rate in requests per minute. The tool fires one tick every `60000/rpm` ms. |
-| `--duration N` | How long the load phase runs in seconds (all runs use 300s = 5 minutes). |
-| `--single-batch` | Each tick sends one request covering the **entire pool** rather than picking random objects. Used for bulk tests to maximise objects per request. |
-| `--bulk` | Uses the `_bulk_update` API (multiple objects per request). Without this flag, individual `update` calls are made. `--single-batch` implies bulk. |
-| `--update-mode blob` | On every tick, mutates one blob field (`blob0`) so the diff engine always sees a **replace op** — exercises the `applyFieldSizeLimit` path that truncates large field values in the audit log. |
-| `--update-mode get` | Instead of updating, fires `_bulk_get` requests — read-only, used to measure the baseline cost of mget operations (the same ES call the diff engine makes to fetch before-state). |
-| `--blob-fields N` | Number of large binary fields (`blob0`…`blobN-1`) attached to each object at seed time. Extra blob fields beyond `blob0` are unchanged each tick, so they appear as noOps in the diff. |
-| `--blob-size N` | Size of each blob field in bytes (e.g. `51200` = 50 KB, `204800` = 200 KB). The diff engine's `applyFieldSizeLimit` truncates field values larger than 48 KB in the audit log. |
-| `--panels N` | Number of nested panel objects inside each saved object's attributes. Controls object complexity for non-blob tests. |
-
-### What each matrix tests
-
-| Script | Update type | Objects/request | Purpose |
-|---|---|---|---|
-| `run_matrix.sh` (L1–L5) | Individual `_update` | 1 | Baseline overhead at realistic per-object update rates; mixed create/update/delete |
-| `run_bulk_matrix.sh` (P100–P700) | `_bulk_update`, full pool | 100–700 | Measures diff cost under the most demanding scenario: one request updating hundreds of objects simultaneously |
-| `run_blob_matrix.sh` (B1–B4) | Individual `_update` | 1 | Adds large blob fields; blob0 mutated every tick to trigger `applyFieldSizeLimit` on each update |
-| `run_bulk_blob_matrix.sh` (B1–B6) | `_bulk_update`, full pool | 5–17 | Combines bulk + blobs; measures compounding cost of mget + diff compute + field size limiting at concurrency |
-| `run_bulk_get_matrix.sh` (G1–G5) | `_bulk_get` (read-only) | 50–250 | Measures raw mget cost; since diff adds one mget per bulk update to fetch before-state, this establishes the baseline cost of that operation |
-
-### Metrics
-
-| Metric | Meaning |
-|---|---|
-| **p50 latency** | Median request round-trip time in milliseconds. Half of all requests completed faster than this. |
-| **p95 latency** | 95th-percentile latency — the slowest 5% of requests exceeded this. |
-| **ELU max** | Peak Event Loop Utilisation recorded during the run (0–1). Measures how busy the Kibana Node.js event loop was. Values above **0.80** indicate the server is at or above the serverless platform ceiling and requests will queue. Values of 1.0 mean the loop was fully saturated. |
-| **errors** | Count of non-200 HTTP responses (429, 502, 503) or client-side timeouts during the load phase. |
-
-### Caveats
-
-- The three conditions were run at different times against the same QA serverless deployment. Server performance can vary between runs due to background activity, garbage collection, or ES cluster state — this adds noise, particularly in tests that push the server into saturation.
-- Bulk blob B1 and B2 run at 3 RPM for 300s, producing only ~15 total requests each. p50 from 15 samples has high variance; treat those rows as directional rather than precise.
-- G5 (250 objects, 50 RPM bulk get) fully saturates all three conditions and is excluded from the bulk get chart. Results at that level are dominated by server chaos rather than the feature under test.
-
----
-
-## Charts
-
-### Aggregate comparison (p50 latency and ELU max per level)
+### p50 latency and ELU max per level
 
 ![Individual updates, bulk updates, blob updates](graphs_row1.png)
 
 ![Bulk blob updates, bulk gets](graphs_row2.png)
+
+### Heap peak per level
+
+![Individual updates, blob updates, bulk updates — heap peak](graphs_heap_row1.png)
+
+![Bulk blob updates, bulk gets — heap peak](graphs_heap_row2.png)
 
 ---
 

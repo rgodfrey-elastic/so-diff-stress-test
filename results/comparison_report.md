@@ -117,7 +117,15 @@ Five load levels progressively increase RPM and pool size. L4 specifically uses 
 
 ### Time-series
 
-![run_matrix.sh — Individual Updates](ts_matrix.png)
+![L1 — 20 RPM, pool=5](ts_matrix_L1.png)
+
+![L2 — 50 RPM, pool=10](ts_matrix_L2.png)
+
+![L3 — 100 RPM, pool=10](ts_matrix_L3.png)
+
+![L4 — 100 RPM, pool=5, all-fields](ts_matrix_L4.png)
+
+![L5 — ramp 50→400 RPM](ts_matrix_L5.png)
 
 ---
 
@@ -140,7 +148,13 @@ The critical difference for diff is that before writing, the server must fetch t
 
 ### Time-series
 
-![run_bulk_matrix.sh — Single-Batch Bulk Updates](ts_bulk.png)
+![P100 — pool=100, single-batch](ts_bulk_P100.png)
+
+![P250 — pool=250, single-batch](ts_bulk_P250.png)
+
+![P500 — pool=500, single-batch](ts_bulk_P500.png)
+
+![P700 — pool=700, single-batch](ts_bulk_P700.png)
 
 ---
 
@@ -162,7 +176,13 @@ Each object is seeded with large blob fields. On every tick, `blob0` is overwrit
 
 ### Time-series
 
-![run_blob_matrix.sh — Individual Blob Updates](ts_blob.png)
+![B1 — pool=5, 1×50KB blob, 10 RPM](ts_blob_B1.png)
+
+![B2 — pool=15, 2×200KB blobs, 30 RPM](ts_blob_B2.png)
+
+![B3 — pool=30, 4×200KB blobs, 60 RPM](ts_blob_B3.png)
+
+![B4 — pool=50, 4×200KB blobs, 100 RPM](ts_blob_B4.png)
 
 ---
 
@@ -187,7 +207,17 @@ The pool is capped at 17 objects because the Kibana request size limit is ~1 MB 
 
 ### Time-series
 
-![run_bulk_blob_matrix.sh — Single-Batch Bulk Blob Updates](ts_bulk_blob.png)
+![B1 — pool=5, 1 blob, 3 RPM](ts_bulk_blob_B1.png)
+
+![B2 — pool=10, 1 blob, 3 RPM](ts_bulk_blob_B2.png)
+
+![B3 — pool=5, 3 blobs, 3 RPM](ts_bulk_blob_B3.png)
+
+![B4 — pool=10, 3 blobs, 3 RPM](ts_bulk_blob_B4.png)
+
+![B5 — pool=17, 5 blobs, 20 RPM](ts_bulk_blob_B5.png)
+
+![B6 — pool=17, 10 blobs, 60 RPM](ts_bulk_blob_B6.png)
 
 ---
 
@@ -211,7 +241,15 @@ By comparing off, audit, and diff on read-only gets, we can confirm that the dif
 
 ### Time-series
 
-![run_bulk_get_matrix.sh — Bulk Gets](ts_bulk_get.png)
+![G1 — pool=100, 10 RPM](ts_bulk_get_G1.png)
+
+![G2 — pool=100, 20 RPM](ts_bulk_get_G2.png)
+
+![G3 — pool=50, 50 RPM](ts_bulk_get_G3.png)
+
+![G4 — pool=100, 50 RPM](ts_bulk_get_G4.png)
+
+![G5 — pool=250, 50 RPM (saturated)](ts_bulk_get_G5.png)
 
 ---
 

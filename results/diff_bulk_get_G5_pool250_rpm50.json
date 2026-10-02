@@ -1,0 +1,1425 @@
+{
+  "config": {
+    "target": "https://kibana-pr-281571-elasticsearch-cae2be.kb.eu-west-1.aws.qa.elastic.cloud",
+    "run": "so-stress-1790357693653",
+    "username": "admin",
+    "authMode": "basic",
+    "loginProvider": "basic",
+    "rpm": 50,
+    "ramp": null,
+    "stepSeconds": null,
+    "durationSeconds": 300,
+    "plan": [
+      {
+        "rpm": 50,
+        "seconds": 300
+      }
+    ],
+    "singleBatch": true,
+    "bulk": false,
+    "batchSize": null,
+    "mix": null,
+    "updateMode": "get",
+    "pool": 250,
+    "panels": 800,
+    "approxObjectBytes": 81195,
+    "blobFields": 0,
+    "blobSize": null,
+    "maxInflight": 50,
+    "pollMs": 5000,
+    "keep": false,
+    "argv": [
+      "--pool",
+      "250",
+      "--rpm",
+      "50",
+      "--single-batch",
+      "--update-mode",
+      "get",
+      "--panels",
+      "800",
+      "--duration",
+      "300",
+      "--out",
+      "results/diff_bulk_get_G5_pool250_rpm50.json",
+      "--yes"
+    ]
+  },
+  "summary": {
+    "startedAt": "2026-09-25T17:39:06.791Z",
+    "finishedAt": "2026-09-25T17:44:26.818Z",
+    "elapsedSeconds": 311.108,
+    "opsCompleted": 249,
+    "opsOk": 134,
+    "opsErrors": 115,
+    "rpmAchieved": 48.02190879051648,
+    "skippedTicks": 0,
+    "stillInflight": 0,
+    "httpCodes": {
+      "200": 134,
+      "429": 30,
+      "502": 85
+    },
+    "latencyMs": {
+      "create": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null,
+        "errors": 0
+      },
+      "update": {
+        "n": 134,
+        "p50": 38486.65095800004,
+        "p95": 54296.53229100001,
+        "max": 58953.57375000004,
+        "errors": 115,
+        "bulkObjectOps": 33500,
+        "bulkRequests": 134,
+        "poolSize": 250
+      },
+      "delete": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null,
+        "errors": 0
+      }
+    },
+    "elu": {
+      "mean": 0.9234792141113611,
+      "p95": 1,
+      "max": 1,
+      "ceiling": 0.8
+    },
+    "eldMs": {
+      "medianOfMax": 1818.230783,
+      "max": 3781.165055
+    },
+    "heapPeakBytes": 1402545788,
+    "statusPolls": 26,
+    "statusNotAvailablePolls": 5,
+    "alerts": [
+      {
+        "t": 12.176,
+        "level": "available",
+        "elu": 0.9013932494183029,
+        "errors": 0
+      },
+      {
+        "t": 23.199,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 29.506,
+        "level": "available",
+        "elu": 0.9972893276830015,
+        "errors": 0
+      },
+      {
+        "t": 36.608,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 42.464,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 59.305,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 74.376,
+        "level": "HTTP 502",
+        "elu": null,
+        "errors": 1
+      },
+      {
+        "t": 83.03,
+        "level": "available",
+        "elu": 0.9986927339020825,
+        "errors": 13
+      },
+      {
+        "t": 110.511,
+        "level": "available",
+        "elu": 1,
+        "errors": 11
+      },
+      {
+        "t": 116.674,
+        "level": "available",
+        "elu": 0.9836630204868281,
+        "errors": 12
+      },
+      {
+        "t": 125.433,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 140.718,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 158.023,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 165.709,
+        "level": "available",
+        "elu": 0.9544830682781917,
+        "errors": 13
+      },
+      {
+        "t": 175.228,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 193.854,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 205.327,
+        "level": "HTTP 502",
+        "elu": null,
+        "errors": 18
+      },
+      {
+        "t": 218.319,
+        "level": "available",
+        "elu": 1,
+        "errors": 2
+      },
+      {
+        "t": 237.093,
+        "level": "available",
+        "elu": 1,
+        "errors": 3
+      },
+      {
+        "t": 257.154,
+        "level": "HTTP 502",
+        "elu": null,
+        "errors": 2
+      },
+      {
+        "t": 269.912,
+        "level": "available",
+        "elu": 1,
+        "errors": 12
+      },
+      {
+        "t": 291.103,
+        "level": "available",
+        "elu": 1,
+        "errors": 4
+      },
+      {
+        "t": 300.785,
+        "level": "HTTP 502",
+        "elu": null,
+        "errors": 22
+      },
+      {
+        "t": 306.106,
+        "level": "HTTP 503",
+        "elu": null,
+        "errors": 2
+      }
+    ],
+    "objects": {
+      "seeded": 250,
+      "createdDuringRun": 0,
+      "deletedDuringRun": 0,
+      "aliveAtEndOfLoad": 250,
+      "cleanupDeleted": 250,
+      "cleanupRemaining": [],
+      "kept": false
+    }
+  },
+  "summaryText": [
+    "==================== SUMMARY ====================",
+    "ops: 249 completed in 311s (48.0 rpm achieved), ok=134 errors=115, ticks skipped at max-inflight=0, still inflight=0",
+    "http codes: {\"200\":134,\"429\":30,\"502\":85}",
+    "  update  n=  134  p50=38487ms  p95=54297ms  max=58954ms  errors=115  [33500 object-ops in 134 bulk requests, pool=250 objects/request]",
+    "objects: seeded=250  created during run=0  deleted during run=0  alive at end of load=250  cleanup deleted=250 (verified)  remaining=0",
+    "ELU:  mean=0.92  p95=1.00  max=1.00   (ceiling 0.80)",
+    "ELD:  median-of-max=1818ms  max=3781ms",
+    "heap: peak=1338MB of 1686MB",
+    "status: 5 of 26 polls NOT available (first at 74s: HTTP 502); status endpoint latency p95=16190ms",
+    "alerts: 24 (first: {\"t\":12.176,\"level\":\"available\",\"elu\":0.9013932494183029,\"errors\":0})",
+    "sample errors: [{\"op\":\"update\",\"status\":429,\"body\":\"{\\\"ok\\\":false,\\\"message\\\":\\\"TLS handshake timeout: Post \\\\\\\"https://100.65.58.138:5601/api/saved_objects/_bulk_get\\\\\\\": net/http: TLS handshake timeout\\\"}\"},{\"op\":\"update\",\"status\":502,\"body\":\"{\\\"ok\\\":false,\\\"message\\\":\\\"read: connection reset by peer\\\"}\"}]"
+  ],
+  "samples": [
+    {
+      "http": 200,
+      "ms": 111.55329099998926,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.022601178284521226,
+      "eld": 18.726911,
+      "eldP99": 13.369343,
+      "heap": 415478604,
+      "heapLimit": 1767899136,
+      "rss": 861585408,
+      "respAvg": 318,
+      "respMax": 797,
+      "reqTotal": 5,
+      "t": 0.112,
+      "rpm": 50,
+      "inflight": 0,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 1658.0090420000197,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.5349409182856545,
+      "eld": 1862.270975,
+      "eldP99": 19.103743,
+      "heap": 522054700,
+      "heapLimit": 1767899136,
+      "rss": 939479040,
+      "respAvg": 7.666666666666667,
+      "respMax": 12,
+      "reqTotal": 7,
+      "t": 6.77,
+      "rpm": 50,
+      "inflight": 5,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 405.1759580000071,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.9013932494183029,
+      "eld": 1769.996287,
+      "eldP99": 1768.947711,
+      "heap": 760702804,
+      "heapLimit": 1767899136,
+      "rss": 1032646656,
+      "respAvg": 589,
+      "respMax": 3494,
+      "reqTotal": 5,
+      "t": 12.176,
+      "rpm": 50,
+      "inflight": 8,
+      "winOk": 2,
+      "winErr": 0,
+      "winP95": 9057.74887499999
+    },
+    {
+      "http": 200,
+      "ms": 6020.91525000002,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 3122.659327,
+      "eldP99": 3122.659327,
+      "heap": 807246836,
+      "heapLimit": 1767899136,
+      "rss": 1258266624,
+      "respAvg": 2,
+      "respMax": 2,
+      "reqTotal": 7,
+      "t": 23.199,
+      "rpm": 50,
+      "inflight": 15,
+      "winOk": 2,
+      "winErr": 0,
+      "winP95": 6437.255458000029
+    },
+    {
+      "http": 200,
+      "ms": 1304.077583999955,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.9972893276830015,
+      "eld": 1890.582527,
+      "eldP99": 1890.582527,
+      "heap": 1074557428,
+      "heapLimit": 1767899136,
+      "rss": 1499308032,
+      "respAvg": 4095,
+      "respMax": 21182,
+      "reqTotal": 7,
+      "t": 29.506,
+      "rpm": 50,
+      "inflight": 19,
+      "winOk": 1,
+      "winErr": 0,
+      "winP95": 22149.52016700004
+    },
+    {
+      "http": 200,
+      "ms": 2101.7285000000265,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1932.525567,
+      "eldP99": 1932.525567,
+      "heap": 1012231460,
+      "heapLimit": 1767899136,
+      "rss": 1413353472,
+      "respAvg": 3687,
+      "respMax": 17046,
+      "reqTotal": 7,
+      "t": 36.608,
+      "rpm": 50,
+      "inflight": 24,
+      "winOk": 1,
+      "winErr": 0,
+      "winP95": 17660.34470800002
+    },
+    {
+      "http": 200,
+      "ms": 854.9822500000009,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 3667.918847,
+      "eldP99": 3667.918847,
+      "heap": 1099287500,
+      "heapLimit": 1767899136,
+      "rss": 1549819904,
+      "respAvg": 98,
+      "respMax": 98,
+      "reqTotal": 8,
+      "t": 42.464,
+      "rpm": 50,
+      "inflight": 24,
+      "winOk": 5,
+      "winErr": 0,
+      "winP95": 33742.807791
+    },
+    {
+      "http": 200,
+      "ms": 11839.790833000035,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 3741.319167,
+      "eldP99": 3741.319167,
+      "heap": 1245508280,
+      "heapLimit": 1767899136,
+      "rss": 1849450496,
+      "respAvg": 139.33333333333334,
+      "respMax": 540,
+      "reqTotal": 15,
+      "t": 59.305,
+      "rpm": 50,
+      "inflight": 27,
+      "winOk": 11,
+      "winErr": 0,
+      "winP95": 44895.00987499999
+    },
+    {
+      "http": 502,
+      "ms": 10069.002875000006,
+      "level": "HTTP 502",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 74.376,
+      "rpm": 50,
+      "inflight": 38,
+      "winOk": 0,
+      "winErr": 1,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 3652.2987079999875,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.9986927339020825,
+      "eld": 2359.295999,
+      "eldP99": 2359.295999,
+      "heap": 1026351532,
+      "heapLimit": 1767899136,
+      "rss": 1655922688,
+      "respAvg": 25.25,
+      "respMax": 43,
+      "reqTotal": 10,
+      "t": 83.03,
+      "rpm": 50,
+      "inflight": 17,
+      "winOk": 15,
+      "winErr": 13,
+      "winP95": 57672.33474999998
+    },
+    {
+      "http": 200,
+      "ms": 22478.48008300003,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 0,
+      "eldP99": 0.000511,
+      "heap": 1402545788,
+      "heapLimit": 1767899136,
+      "rss": 1986314240,
+      "respAvg": 1259.5,
+      "respMax": 2517,
+      "reqTotal": 4,
+      "t": 110.511,
+      "rpm": 50,
+      "inflight": 29,
+      "winOk": 0,
+      "winErr": 11,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 873.3656249999767,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.9836630204868281,
+      "eld": 2049.966079,
+      "eldP99": 2049.966079,
+      "heap": 685267620,
+      "heapLimit": 1767899136,
+      "rss": 1029500928,
+      "respAvg": 3,
+      "respMax": 3,
+      "reqTotal": 7,
+      "t": 116.674,
+      "rpm": 50,
+      "inflight": 5,
+      "winOk": 17,
+      "winErr": 12,
+      "winP95": 58953.57375000004
+    },
+    {
+      "http": 200,
+      "ms": 3758.9034580000443,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1172.307967,
+      "eldP99": 1172.307967,
+      "heap": 753646968,
+      "heapLimit": 1767899136,
+      "rss": 1150472192,
+      "respAvg": 16.6,
+      "respMax": 47,
+      "reqTotal": 11,
+      "t": 125.433,
+      "rpm": 50,
+      "inflight": 13,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 10284.600291999988,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1572.863999,
+      "eldP99": 1572.863999,
+      "heap": 1006235232,
+      "heapLimit": 1767899136,
+      "rss": 1471426560,
+      "respAvg": 105,
+      "respMax": 208,
+      "reqTotal": 4,
+      "t": 140.718,
+      "rpm": 50,
+      "inflight": 24,
+      "winOk": 1,
+      "winErr": 0,
+      "winP95": 17264.900874999992
+    },
+    {
+      "http": 200,
+      "ms": 12303.618458000012,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 476.315647,
+      "eldP99": 476.315647,
+      "heap": 1269246652,
+      "heapLimit": 1767899136,
+      "rss": 1843826688,
+      "respAvg": 95,
+      "respMax": 294,
+      "reqTotal": 19,
+      "t": 158.023,
+      "rpm": 50,
+      "inflight": 36,
+      "winOk": 3,
+      "winErr": 0,
+      "winP95": 43655.399042000005
+    },
+    {
+      "http": 200,
+      "ms": 2685.8104170000297,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.9544830682781917,
+      "eld": 1765.801983,
+      "eldP99": 1741.684735,
+      "heap": 763514236,
+      "heapLimit": 1767899136,
+      "rss": 1132769280,
+      "respAvg": 5935,
+      "respMax": 5935,
+      "reqTotal": 7,
+      "t": 165.709,
+      "rpm": 50,
+      "inflight": 8,
+      "winOk": 21,
+      "winErr": 13,
+      "winP95": 47834.79454199999
+    },
+    {
+      "http": 200,
+      "ms": 4518.3927080000285,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1168.113663,
+      "eldP99": 1168.113663,
+      "heap": 984159656,
+      "heapLimit": 1767899136,
+      "rss": 1385570304,
+      "respAvg": 3,
+      "respMax": 3,
+      "reqTotal": 8,
+      "t": 175.228,
+      "rpm": 50,
+      "inflight": 16,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 13625.63629200001,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1599.078399,
+      "eldP99": 1599.078399,
+      "heap": 1246133392,
+      "heapLimit": 1767899136,
+      "rss": 1745707008,
+      "respAvg": 2,
+      "respMax": 2,
+      "reqTotal": 9,
+      "t": 193.854,
+      "rpm": 50,
+      "inflight": 30,
+      "winOk": 1,
+      "winErr": 0,
+      "winP95": 29431.58141699998
+    },
+    {
+      "http": 502,
+      "ms": 6471.9365420000395,
+      "level": "HTTP 502",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 205.327,
+      "rpm": 50,
+      "inflight": 13,
+      "winOk": 9,
+      "winErr": 18,
+      "winP95": 42601.41333300003
+    },
+    {
+      "http": 200,
+      "ms": 7990.58133299998,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1797.259263,
+      "eldP99": 1797.259263,
+      "heap": 885036504,
+      "heapLimit": 1767899136,
+      "rss": 1171992576,
+      "respAvg": 39.57142857142857,
+      "respMax": 117,
+      "reqTotal": 14,
+      "t": 218.319,
+      "rpm": 50,
+      "inflight": 12,
+      "winOk": 10,
+      "winErr": 2,
+      "winP95": 49041.84179199999
+    },
+    {
+      "http": 200,
+      "ms": 13773.190333999984,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 2929.721343,
+      "eldP99": 2929.721343,
+      "heap": 1006988680,
+      "heapLimit": 1767899136,
+      "rss": 1567453184,
+      "respAvg": 3,
+      "respMax": 3,
+      "reqTotal": 6,
+      "t": 237.093,
+      "rpm": 50,
+      "inflight": 25,
+      "winOk": 0,
+      "winErr": 3,
+      "winP95": 0
+    },
+    {
+      "http": 502,
+      "ms": 15059.250916999998,
+      "level": "HTTP 502",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 257.154,
+      "rpm": 50,
+      "inflight": 39,
+      "winOk": 0,
+      "winErr": 2,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 7755.668375000008,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1818.230783,
+      "eldP99": 1818.230783,
+      "heap": 916878152,
+      "heapLimit": 1767899136,
+      "rss": 1329762304,
+      "respAvg": 223.25,
+      "respMax": 655,
+      "reqTotal": 11,
+      "t": 269.912,
+      "rpm": 50,
+      "inflight": 19,
+      "winOk": 19,
+      "winErr": 12,
+      "winP95": 52906.345791
+    },
+    {
+      "http": 200,
+      "ms": 16190.498999999953,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 3781.165055,
+      "eldP99": 3781.165055,
+      "heap": 1385384460,
+      "heapLimit": 1767899136,
+      "rss": 1930039296,
+      "respAvg": 3864.25,
+      "respMax": 27862,
+      "reqTotal": 14,
+      "t": 291.103,
+      "rpm": 50,
+      "inflight": 31,
+      "winOk": 1,
+      "winErr": 4,
+      "winP95": 29077.218500000017
+    },
+    {
+      "http": 502,
+      "ms": 4680.377542000031,
+      "level": "HTTP 502",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 300.785,
+      "rpm": 50,
+      "inflight": 12,
+      "winOk": 5,
+      "winErr": 22,
+      "winP95": 49274.59883299994
+    },
+    {
+      "http": 503,
+      "ms": 319.4873329999391,
+      "level": "HTTP 503",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 306.106,
+      "rpm": 50,
+      "inflight": 0,
+      "winOk": 10,
+      "winErr": 2,
+      "winP95": 53079.33041599998
+    }
+  ],
+  "latency": {
+    "create": [],
+    "update": [
+      4912.913415999996,
+      9057.74887499999,
+      5146.292291999998,
+      6437.255458000029,
+      22149.52016700004,
+      17660.34470800002,
+      33742.807791,
+      30339.662290999986,
+      29404.480458999984,
+      31087.98670800001,
+      29408.71862499998,
+      27020.26541600004,
+      24950.937042000005,
+      19112.942875000008,
+      20397.63191700005,
+      17300.49229199998,
+      11192.108833000006,
+      9839.266082999995,
+      9698.481166000012,
+      7613.238499999978,
+      8017.837625000044,
+      44895.00987499999,
+      34756.01329199999,
+      37161.35475,
+      41980.19533299998,
+      57672.33474999998,
+      44483.313124999986,
+      38486.65095800004,
+      39698.5025,
+      51740.297416999994,
+      50572.104625000036,
+      40974.746291999996,
+      43398.00858299999,
+      53046.370957999956,
+      54296.53229100001,
+      55556.56754099997,
+      47171.26720900001,
+      40520.94095900003,
+      35720.6115,
+      36926.075459000014,
+      38138.54725,
+      41983.855666999996,
+      50439.545082999975,
+      32201.35258299997,
+      58953.57375000004,
+      45766.55262500001,
+      44588.48654100002,
+      39567.29670800001,
+      55464.36245899997,
+      43477.32012499997,
+      56761.069625000004,
+      52001.10208299995,
+      58072.806082999974,
+      9478.393082999974,
+      17264.900874999992,
+      43655.399042000005,
+      6568.681709000026,
+      10600.764666000032,
+      8275.576833,
+      25565.33379199996,
+      20762.33054200001,
+      31577.993625000003,
+      27982.372334000014,
+      32801.99375000002,
+      46067.24654199998,
+      29264.856499999994,
+      36485.635583000025,
+      34105.72033400001,
+      42544.56012500002,
+      30544.74424999999,
+      37774.34695799998,
+      40210.39141599997,
+      41451.53570800001,
+      43896.47566699999,
+      45144.963541000034,
+      39167.504541,
+      47834.79454199999,
+      35649.730625000026,
+      49125.94774999999,
+      29431.58141699998,
+      26924.554500000027,
+      34146.59929099999,
+      28149.686583000002,
+      42601.41333300003,
+      30605.056666999997,
+      36628.82529200002,
+      35445.00562499999,
+      33056.78500000003,
+      40291.243709,
+      25890.47537499998,
+      45160.316249999974,
+      29558.515958000033,
+      44007.31891699997,
+      41637.289749999996,
+      32042.594625000027,
+      46501.842917,
+      38114.960291000025,
+      39347.77045899996,
+      49041.84179199999,
+      27272.826166999992,
+      40513.29304099997,
+      28502.599959000014,
+      41741.38466600003,
+      29734.124124999973,
+      34544.55004100001,
+      50209.42850000004,
+      43032.98091700004,
+      39446.80475000001,
+      45476.261459,
+      37078.549,
+      38293.896917000005,
+      35896.47329200001,
+      44330.30820799997,
+      46758.30437500001,
+      47990.89279199997,
+      49235.51716700004,
+      52906.345791,
+      51757.15379099996,
+      29077.218500000017,
+      34804.273000000045,
+      36009.340333,
+      49274.59883299994,
+      38476.06679100002,
+      37277.452750000055,
+      44509.42254199996,
+      40916.207042000024,
+      39725.357833999966,
+      42139.892082999984,
+      45768.70545900002,
+      43384.411416999996,
+      53079.33041599998,
+      50720.709416000056,
+      47142.792791999935,
+      48372.64829199994
+    ],
+    "delete": []
+  },
+  "errors": {
+    "create": [],
+    "update": [
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.58.138:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.58.138:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.58.138:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.58.138:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.58.138:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.153.224:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      }
+    ],
+    "delete": []
+  }
+}

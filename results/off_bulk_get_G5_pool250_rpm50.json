@@ -1,0 +1,1052 @@
+{
+  "config": {
+    "target": "https://kibana-pr-281571-elasticsearch-b33a14.kb.eu-west-1.aws.qa.elastic.cloud",
+    "run": "so-stress-1790875861602",
+    "username": "admin",
+    "authMode": "basic",
+    "loginProvider": "basic",
+    "rpm": 50,
+    "ramp": null,
+    "stepSeconds": null,
+    "durationSeconds": 300,
+    "plan": [
+      {
+        "rpm": 50,
+        "seconds": 300
+      }
+    ],
+    "singleBatch": true,
+    "bulk": false,
+    "batchSize": null,
+    "mix": null,
+    "updateMode": "get",
+    "pool": 250,
+    "panels": 800,
+    "approxObjectBytes": 81195,
+    "blobFields": 0,
+    "blobSize": null,
+    "maxInflight": 50,
+    "pollMs": 5000,
+    "keep": false,
+    "argv": [
+      "--pool",
+      "250",
+      "--rpm",
+      "50",
+      "--single-batch",
+      "--update-mode",
+      "get",
+      "--panels",
+      "800",
+      "--duration",
+      "300",
+      "--out",
+      "results/off_bulk_get_G5_pool250_rpm50.json",
+      "--yes"
+    ]
+  },
+  "summary": {
+    "startedAt": "2026-10-01T17:35:14.754Z",
+    "finishedAt": "2026-10-01T17:40:46.982Z",
+    "elapsedSeconds": 328.497,
+    "opsCompleted": 142,
+    "opsOk": 81,
+    "opsErrors": 61,
+    "rpmAchieved": 25.936309920638543,
+    "skippedTicks": 0,
+    "stillInflight": 0,
+    "httpCodes": {
+      "0": 28,
+      "200": 81,
+      "502": 32,
+      "503": 1
+    },
+    "latencyMs": {
+      "create": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null,
+        "errors": 0
+      },
+      "update": {
+        "n": 81,
+        "p50": 33653.372333999956,
+        "p95": 52626.36183299997,
+        "max": 57197.58841699996,
+        "errors": 61,
+        "bulkObjectOps": 20250,
+        "bulkRequests": 81,
+        "poolSize": 250
+      },
+      "delete": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null,
+        "errors": 0
+      }
+    },
+    "elu": {
+      "mean": 0.7606330453197908,
+      "p95": 1,
+      "max": 1,
+      "ceiling": 0.8
+    },
+    "eldMs": {
+      "medianOfMax": 1795.162111,
+      "max": 4192.206847
+    },
+    "heapPeakBytes": 1364363760,
+    "statusPolls": 23,
+    "statusNotAvailablePolls": 1,
+    "alerts": [
+      {
+        "t": 14.144,
+        "level": "available",
+        "elu": 0.984857519430417,
+        "errors": 0
+      },
+      {
+        "t": 24.746,
+        "level": "available",
+        "elu": 0.994314603727387,
+        "errors": 0
+      },
+      {
+        "t": 35.986,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 44.638,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 61.684,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 72.926,
+        "level": "available",
+        "elu": 1,
+        "errors": 11
+      },
+      {
+        "t": 92.761,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 98.85,
+        "level": "available",
+        "elu": 0.9921442283007437,
+        "errors": 22
+      },
+      {
+        "t": 106.898,
+        "level": "available",
+        "elu": 0.9999427490445482,
+        "errors": 0
+      },
+      {
+        "t": 121.334,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 259.035,
+        "level": "HTTP 0",
+        "elu": null,
+        "errors": 26
+      },
+      {
+        "t": 267.617,
+        "level": "available",
+        "elu": 0.49286421834631067,
+        "errors": 2
+      },
+      {
+        "t": 275.397,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 281.64,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 288.008,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 298.509,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 307.53,
+        "level": "available",
+        "elu": 0.9946976312619621,
+        "errors": 0
+      }
+    ],
+    "objects": {
+      "seeded": 250,
+      "createdDuringRun": 0,
+      "deletedDuringRun": 0,
+      "aliveAtEndOfLoad": 250,
+      "cleanupDeleted": 250,
+      "cleanupRemaining": [],
+      "kept": false
+    }
+  },
+  "summaryText": [
+    "==================== SUMMARY ====================",
+    "ops: 142 completed in 328s (25.9 rpm achieved), ok=81 errors=61, ticks skipped at max-inflight=0, still inflight=0",
+    "http codes: {\"0\":28,\"200\":81,\"502\":32,\"503\":1}",
+    "  update  n=   81  p50=33653ms  p95=52626ms  max=57198ms  errors=61  [20250 object-ops in 81 bulk requests, pool=250 objects/request]",
+    "objects: seeded=250  created during run=0  deleted during run=0  alive at end of load=250  cleanup deleted=250 (verified)  remaining=0",
+    "ELU:  mean=0.76  p95=1.00  max=1.00   (ceiling 0.80)",
+    "ELD:  median-of-max=1795ms  max=4192ms",
+    "heap: peak=1301MB of 1686MB",
+    "status: 1 of 23 polls NOT available (first at 259s: HTTP 0); status endpoint latency p95=14832ms",
+    "alerts: 17 (first: {\"t\":14.144,\"level\":\"available\",\"elu\":0.984857519430417,\"errors\":0})",
+    "sample errors: [{\"op\":\"update\",\"status\":502,\"body\":\"{\\\"ok\\\":false,\\\"message\\\":\\\"read: connection reset by peer\\\"}\"},{\"op\":\"update\",\"status\":502,\"body\":\"{\\\"ok\\\":false,\\\"message\\\":\\\"backend closed connection\\\"}\"}]"
+  ],
+  "samples": [
+    {
+      "http": 200,
+      "ms": 117.1473330000008,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.0793122389228972,
+      "eld": 95.092735,
+      "eldP99": 13.623295,
+      "heap": 395673852,
+      "heapLimit": 1767899136,
+      "rss": 862707712,
+      "respAvg": 330.625,
+      "respMax": 887,
+      "reqTotal": 7,
+      "t": 0.117,
+      "rpm": 50,
+      "inflight": 0,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 3118.9112089999835,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.22744825120789833,
+      "eld": 999.292927,
+      "eldP99": 17.399807,
+      "heap": 473343532,
+      "heapLimit": 1767899136,
+      "rss": 956112896,
+      "respAvg": 8.5,
+      "respMax": 11,
+      "reqTotal": 6,
+      "t": 8.239,
+      "rpm": 50,
+      "inflight": 6,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 905.3693339999882,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.984857519430417,
+      "eld": 1778.384895,
+      "eldP99": 1778.384895,
+      "heap": 827160420,
+      "heapLimit": 1767899136,
+      "rss": 1131057152,
+      "respAvg": 9.333333333333334,
+      "respMax": 24,
+      "reqTotal": 6,
+      "t": 14.144,
+      "rpm": 50,
+      "inflight": 11,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 118.11104099999648,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.48081982162027515,
+      "eld": 1690.304511,
+      "eldP99": 21.217279,
+      "heap": 862538532,
+      "heapLimit": 1767899136,
+      "rss": 1201795072,
+      "respAvg": 4203.2,
+      "respMax": 13058,
+      "reqTotal": 6,
+      "t": 19.265,
+      "rpm": 50,
+      "inflight": 10,
+      "winOk": 6,
+      "winErr": 0,
+      "winP95": 13588.465832999995
+    },
+    {
+      "http": 200,
+      "ms": 477.9107500000391,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.994314603727387,
+      "eld": 2493.513727,
+      "eldP99": 2493.513727,
+      "heap": 562902888,
+      "heapLimit": 1767899136,
+      "rss": 1185316864,
+      "respAvg": 4.333333333333333,
+      "respMax": 9,
+      "reqTotal": 6,
+      "t": 24.746,
+      "rpm": 50,
+      "inflight": 14,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 6237.497249999957,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1803.550719,
+      "eldP99": 1803.550719,
+      "heap": 936584552,
+      "heapLimit": 1767899136,
+      "rss": 1538932736,
+      "respAvg": 1004,
+      "respMax": 1982,
+      "reqTotal": 7,
+      "t": 35.986,
+      "rpm": 50,
+      "inflight": 22,
+      "winOk": 1,
+      "winErr": 0,
+      "winP95": 27755.203750000015
+    },
+    {
+      "http": 200,
+      "ms": 3649.8275830000057,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1730.150399,
+      "eldP99": 1730.150399,
+      "heap": 1249889076,
+      "heapLimit": 1767899136,
+      "rss": 1720754176,
+      "respAvg": 7894.666666666667,
+      "respMax": 23646,
+      "reqTotal": 8,
+      "t": 44.638,
+      "rpm": 50,
+      "inflight": 29,
+      "winOk": 1,
+      "winErr": 0,
+      "winP95": 24000.59574999998
+    },
+    {
+      "http": 200,
+      "ms": 12044.200291999965,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 0,
+      "eldP99": 0.000511,
+      "heap": 1364363760,
+      "heapLimit": 1767899136,
+      "rss": 1951039488,
+      "respAvg": 0,
+      "respMax": 0,
+      "reqTotal": 4,
+      "t": 61.684,
+      "rpm": 50,
+      "inflight": 38,
+      "winOk": 5,
+      "winErr": 0,
+      "winP95": 34447.60079200001
+    },
+    {
+      "http": 200,
+      "ms": 6239.429958000022,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 3623.878655,
+      "eldP99": 3623.878655,
+      "heap": 1170311592,
+      "heapLimit": 1767899136,
+      "rss": 1853952000,
+      "respAvg": 368.8,
+      "respMax": 920,
+      "reqTotal": 9,
+      "t": 72.926,
+      "rpm": 50,
+      "inflight": 20,
+      "winOk": 16,
+      "winErr": 11,
+      "winP95": 55813.67654100002
+    },
+    {
+      "http": 200,
+      "ms": 14832.15404200001,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 4192.206847,
+      "eldP99": 4192.206847,
+      "heap": 1332411592,
+      "heapLimit": 1767899136,
+      "rss": 1954680832,
+      "respAvg": 5404.5,
+      "respMax": 40478,
+      "reqTotal": 18,
+      "t": 92.761,
+      "rpm": 50,
+      "inflight": 35,
+      "winOk": 2,
+      "winErr": 0,
+      "winP95": 48205.64845799998
+    },
+    {
+      "http": 200,
+      "ms": 1087.208290999988,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.9921442283007437,
+      "eld": 2506.096639,
+      "eldP99": 2506.096639,
+      "heap": 649962560,
+      "heapLimit": 1767899136,
+      "rss": 833572864,
+      "respAvg": 0,
+      "respMax": 0,
+      "reqTotal": 1,
+      "t": 98.85,
+      "rpm": 50,
+      "inflight": 3,
+      "winOk": 15,
+      "winErr": 22,
+      "winP95": 57197.58841699996
+    },
+    {
+      "http": 200,
+      "ms": 3045.621124999947,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.9999427490445482,
+      "eld": 1839.202303,
+      "eldP99": 1839.202303,
+      "heap": 690296228,
+      "heapLimit": 1767899136,
+      "rss": 1027371008,
+      "respAvg": 30.428571428571427,
+      "respMax": 84,
+      "reqTotal": 10,
+      "t": 106.898,
+      "rpm": 50,
+      "inflight": 9,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 9433.658792000031,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1795.162111,
+      "eldP99": 1795.162111,
+      "heap": 923618664,
+      "heapLimit": 1767899136,
+      "rss": 1498443776,
+      "respAvg": 951.3333333333334,
+      "respMax": 2316,
+      "reqTotal": 9,
+      "t": 121.334,
+      "rpm": 50,
+      "inflight": 21,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 0,
+      "ms": 132678.53562499996,
+      "level": "HTTP 0",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 259.035,
+      "rpm": 50,
+      "inflight": 3,
+      "winOk": 0,
+      "winErr": 26,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 3570.5607919999748,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.49286421834631067,
+      "eld": 1786.773503,
+      "eldP99": 207.355903,
+      "heap": 569026876,
+      "heapLimit": 1767899136,
+      "rss": 859095040,
+      "respAvg": 2.6666666666666665,
+      "respMax": 3,
+      "reqTotal": 10,
+      "t": 267.617,
+      "rpm": 50,
+      "inflight": 8,
+      "winOk": 0,
+      "winErr": 2,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 2772.871584000066,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 2250.244095,
+      "eldP99": 2250.244095,
+      "heap": 893621952,
+      "heapLimit": 1767899136,
+      "rss": 1229164544,
+      "respAvg": 1013.6666666666666,
+      "respMax": 2712,
+      "reqTotal": 3,
+      "t": 275.397,
+      "rpm": 50,
+      "inflight": 14,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 1238.4967500000494,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 2250.244095,
+      "eldP99": 2250.244095,
+      "heap": 893621952,
+      "heapLimit": 1767899136,
+      "rss": 1229164544,
+      "respAvg": 1013.6666666666666,
+      "respMax": 2712,
+      "reqTotal": 3,
+      "t": 281.64,
+      "rpm": 50,
+      "inflight": 16,
+      "winOk": 3,
+      "winErr": 0,
+      "winP95": 19499.848791999975
+    },
+    {
+      "http": 200,
+      "ms": 1364.0500000000466,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1925.185535,
+      "eldP99": 1925.185535,
+      "heap": 671679236,
+      "heapLimit": 1767899136,
+      "rss": 1345032192,
+      "respAvg": 3391.1428571428573,
+      "respMax": 11829,
+      "reqTotal": 8,
+      "t": 288.008,
+      "rpm": 50,
+      "inflight": 20,
+      "winOk": 2,
+      "winErr": 0,
+      "winP95": 15160.617916000076
+    },
+    {
+      "http": 200,
+      "ms": 5499.1871670000255,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1793.064959,
+      "eldP99": 1793.064959,
+      "heap": 1034789416,
+      "heapLimit": 1767899136,
+      "rss": 1492340736,
+      "respAvg": 3382,
+      "respMax": 16769,
+      "reqTotal": 11,
+      "t": 298.509,
+      "rpm": 50,
+      "inflight": 25,
+      "winOk": 4,
+      "winErr": 0,
+      "winP95": 36306.37387499999
+    },
+    {
+      "http": 200,
+      "ms": 4019.466417000047,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.9946976312619621,
+      "eld": 1823.473663,
+      "eldP99": 1823.473663,
+      "heap": 1167901500,
+      "heapLimit": 1767899136,
+      "rss": 1766699008,
+      "respAvg": 10799.444444444445,
+      "respMax": 34039,
+      "reqTotal": 9,
+      "t": 307.53,
+      "rpm": 50,
+      "inflight": 23,
+      "winOk": 3,
+      "winErr": 0,
+      "winP95": 36666.568582999986
+    },
+    {
+      "http": 200,
+      "ms": 113.48212499998044,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.4256290370665191,
+      "eld": 1772.093439,
+      "eldP99": 57.606143,
+      "heap": 1242070228,
+      "heapLimit": 1767899136,
+      "rss": 1836662784,
+      "respAvg": 15196.214285714286,
+      "respMax": 35991,
+      "reqTotal": 4,
+      "t": 312.646,
+      "rpm": 50,
+      "inflight": 13,
+      "winOk": 10,
+      "winErr": 0,
+      "winP95": 37412.689584000036
+    },
+    {
+      "http": 200,
+      "ms": 345.67775000003166,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.010354990236413642,
+      "eld": 11.501567,
+      "eldP99": 10.256383,
+      "heap": 1244518228,
+      "heapLimit": 1767899136,
+      "rss": 1835495424,
+      "respAvg": 8.5,
+      "respMax": 13,
+      "reqTotal": 6,
+      "t": 317.992,
+      "rpm": 50,
+      "inflight": 13,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 406.5787910000654,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.05154170787002652,
+      "eld": 62.652415,
+      "eldP99": 49.151999,
+      "heap": 1320701888,
+      "heapLimit": 1767899136,
+      "rss": 1918799872,
+      "respAvg": 20592.78947368421,
+      "respMax": 39040,
+      "reqTotal": 5,
+      "t": 323.497,
+      "rpm": 50,
+      "inflight": 0,
+      "winOk": 13,
+      "winErr": 0,
+      "winP95": 42661.53137500002
+    }
+  ],
+  "latency": {
+    "create": [],
+    "update": [
+      9599.274917000002,
+      13588.465832999995,
+      11608.049874999997,
+      13016.287624999968,
+      8546.13395800002,
+      6225.3944159999955,
+      27755.203750000015,
+      24000.59574999998,
+      29280.659916999983,
+      34447.60079200001,
+      34201.550208,
+      33473.75783299998,
+      33591.87245800003,
+      33542.43562500004,
+      25513.47858300002,
+      34072.63537500001,
+      36498.440833,
+      55813.67654100002,
+      40226.73875000002,
+      53505.480125,
+      39113.53691700002,
+      43957.37524999998,
+      52430.68504100002,
+      51295.95170799998,
+      50139.97541700001,
+      32132.260083,
+      48999.858791999985,
+      28461.585625000007,
+      29674.589125,
+      41812.94987499999,
+      48205.64845799998,
+      25604.70208300004,
+      50937.59554199997,
+      36548.07179200003,
+      53446.464665999985,
+      27021.076917,
+      37863.15829200001,
+      57197.58841699996,
+      29580.651208000025,
+      28388.80466700002,
+      41646.953541999974,
+      34452.93866700004,
+      46520.738249999995,
+      35730.225958000054,
+      52626.36183299997,
+      39434.31783399999,
+      19499.848791999975,
+      14917.604167000041,
+      14401.52966599993,
+      13833.753582999983,
+      15160.617916000076,
+      18252.626500000013,
+      33446.402583000076,
+      36306.37387499999,
+      34367.08458300005,
+      34583.88141599996,
+      33653.372333999956,
+      36666.568582999986,
+      37412.689584000036,
+      36466.81574999995,
+      34196.026541,
+      21300.6230410001,
+      33417.69145799999,
+      14343.57725000009,
+      12370.740542000043,
+      11794.551167000085,
+      20291.8557079999,
+      17419.36433400004,
+      31731.867708000005,
+      25828.39620800002,
+      32149.18637500005,
+      26872.413458999945,
+      40165.75654099998,
+      42661.53137500002,
+      41564.05087500007,
+      31742.525749999913,
+      40335.00800000003,
+      38160.56445800001,
+      37047.05266699998,
+      40220.29016600002,
+      26095.669915999984
+    ],
+    "delete": []
+  },
+  "errors": {
+    "create": [],
+    "update": [
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      }
+    ],
+    "delete": []
+  }
+}

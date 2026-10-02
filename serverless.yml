@@ -1,0 +1,29 @@
+# Kibana user settings for the serverless QA deployment used for saved object diff stress testing.
+#
+# Apply via the Elastic Cloud console:
+#   Project → Edit → Kibana user settings → paste the block for the condition you want to test.
+#   Wait for the rolling restart to complete, then run the matching run_*.sh matrix script.
+#
+# Three conditions correspond to the <condition> argument in all run_*.sh scripts:
+#   off    — audit disabled (baseline; fastest, no audit overhead at all)
+#   audit  — audit enabled, diffs disabled (isolates audit write cost from diff compute cost)
+#   diff   — audit + diffs enabled (full feature; what will ship)
+#
+# ─────────────────────────────────────────────────────────────
+# Condition: off  (baseline — paste this, then run: ./run_*.sh off all)
+# ─────────────────────────────────────────────────────────────
+# (no settings needed — audit is disabled by default on serverless)
+
+# ─────────────────────────────────────────────────────────────
+# Condition: audit  (paste this, then run: ./run_*.sh audit all)
+# ─────────────────────────────────────────────────────────────
+xpack.security.audit.enabled: true
+
+# ─────────────────────────────────────────────────────────────
+# Condition: diff  (paste this, then run: ./run_*.sh diff all)
+# ─────────────────────────────────────────────────────────────
+xpack.security.audit.enabled: true
+xpack.security.audit.savedObjectDiff.enabled: true
+xpack.security.audit.savedObjectDiff.typesToInclude:
+  - index-pattern
+xpack.security.audit.savedObjectDiff.fieldSizeLimit: 48kb

@@ -1,0 +1,1679 @@
+{
+  "config": {
+    "target": "https://kibana-pr-281571-elasticsearch-b33a14.kb.eu-west-1.aws.qa.elastic.cloud",
+    "run": "so-stress-1790900499918",
+    "username": "admin",
+    "authMode": "basic",
+    "loginProvider": "basic",
+    "rpm": 50,
+    "ramp": null,
+    "stepSeconds": null,
+    "durationSeconds": 300,
+    "plan": [
+      {
+        "rpm": 50,
+        "seconds": 300
+      }
+    ],
+    "singleBatch": true,
+    "bulk": false,
+    "batchSize": null,
+    "mix": null,
+    "updateMode": "get",
+    "pool": 250,
+    "panels": 800,
+    "approxObjectBytes": 81195,
+    "blobFields": 0,
+    "blobSize": null,
+    "maxInflight": 50,
+    "pollMs": 5000,
+    "keep": false,
+    "argv": [
+      "--pool",
+      "250",
+      "--rpm",
+      "50",
+      "--single-batch",
+      "--update-mode",
+      "get",
+      "--panels",
+      "800",
+      "--duration",
+      "300",
+      "--out",
+      "results/audit_bulk_get_G5_pool250_rpm50.json",
+      "--yes"
+    ]
+  },
+  "summary": {
+    "startedAt": "2026-10-02T00:25:52.994Z",
+    "finishedAt": "2026-10-02T00:31:05.729Z",
+    "elapsedSeconds": 307.663,
+    "opsCompleted": 249,
+    "opsOk": 120,
+    "opsErrors": 129,
+    "rpmAchieved": 48.55962530431023,
+    "skippedTicks": 0,
+    "stillInflight": 0,
+    "httpCodes": {
+      "0": 2,
+      "200": 120,
+      "429": 12,
+      "502": 79,
+      "503": 36
+    },
+    "latencyMs": {
+      "create": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null,
+        "errors": 0
+      },
+      "update": {
+        "n": 120,
+        "p50": 39270.97212500003,
+        "p95": 55095.988625,
+        "max": 57641.59516699996,
+        "errors": 129,
+        "bulkObjectOps": 30000,
+        "bulkRequests": 120,
+        "poolSize": 250
+      },
+      "delete": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null,
+        "errors": 0
+      }
+    },
+    "elu": {
+      "mean": 0.9035254783398375,
+      "p95": 1,
+      "max": 1,
+      "ceiling": 0.8
+    },
+    "eldMs": {
+      "medianOfMax": 1842.348031,
+      "max": 4668.260351
+    },
+    "heapPeakBytes": 1444425372,
+    "statusPolls": 34,
+    "statusNotAvailablePolls": 12,
+    "alerts": [
+      {
+        "t": 12.561,
+        "level": "available",
+        "elu": 0.9935058851691168,
+        "errors": 0
+      },
+      {
+        "t": 20.806,
+        "level": "available",
+        "elu": 0.9941230759201344,
+        "errors": 0
+      },
+      {
+        "t": 29.311,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 39.715,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 50.961,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 57.231,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 77.889,
+        "level": "available",
+        "elu": 1,
+        "errors": 13
+      },
+      {
+        "t": 83.242,
+        "level": "HTTP 503",
+        "elu": null,
+        "errors": 19
+      },
+      {
+        "t": 88.351,
+        "level": "HTTP 503",
+        "elu": null,
+        "errors": 4
+      },
+      {
+        "t": 93.523,
+        "level": "available",
+        "elu": 0.9943397284943246,
+        "errors": 4
+      },
+      {
+        "t": 102.2,
+        "level": "available",
+        "elu": 0.9332746118664438,
+        "errors": 0
+      },
+      {
+        "t": 113.127,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 138.689,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 152.046,
+        "level": "HTTP 0",
+        "elu": null,
+        "errors": 8
+      },
+      {
+        "t": 167.561,
+        "level": "available",
+        "elu": 1,
+        "errors": 1
+      },
+      {
+        "t": 182.894,
+        "level": "HTTP 429",
+        "elu": null,
+        "errors": 0
+      },
+      {
+        "t": 188.005,
+        "level": "HTTP 503",
+        "elu": null,
+        "errors": 23
+      },
+      {
+        "t": 193.113,
+        "level": "HTTP 503",
+        "elu": null,
+        "errors": 4
+      },
+      {
+        "t": 200.913,
+        "level": "available",
+        "elu": 0.9243353273710023,
+        "errors": 1
+      },
+      {
+        "t": 211.962,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 225.113,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 240.473,
+        "level": "HTTP 429",
+        "elu": null,
+        "errors": 5
+      },
+      {
+        "t": 246.423,
+        "level": "available",
+        "elu": 1,
+        "errors": 1
+      },
+      {
+        "t": 253.844,
+        "level": "available",
+        "elu": 1,
+        "errors": 13
+      },
+      {
+        "t": 265.086,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 277.088,
+        "level": "available",
+        "elu": 1,
+        "errors": 0
+      },
+      {
+        "t": 282.206,
+        "level": "HTTP 503",
+        "elu": null,
+        "errors": 18
+      },
+      {
+        "t": 287.315,
+        "level": "HTTP 503",
+        "elu": null,
+        "errors": 4
+      },
+      {
+        "t": 292.431,
+        "level": "HTTP 503",
+        "elu": null,
+        "errors": 4
+      },
+      {
+        "t": 297.548,
+        "level": "HTTP 503",
+        "elu": null,
+        "errors": 5
+      },
+      {
+        "t": 302.661,
+        "level": "HTTP 503",
+        "elu": null,
+        "errors": 2
+      }
+    ],
+    "objects": {
+      "seeded": 250,
+      "createdDuringRun": 0,
+      "deletedDuringRun": 0,
+      "aliveAtEndOfLoad": 250,
+      "cleanupDeleted": 250,
+      "cleanupRemaining": [],
+      "kept": false
+    }
+  },
+  "summaryText": [
+    "==================== SUMMARY ====================",
+    "ops: 249 completed in 308s (48.6 rpm achieved), ok=120 errors=129, ticks skipped at max-inflight=0, still inflight=0",
+    "http codes: {\"0\":2,\"200\":120,\"429\":12,\"502\":79,\"503\":36}",
+    "  update  n=  120  p50=39271ms  p95=55096ms  max=57642ms  errors=129  [30000 object-ops in 120 bulk requests, pool=250 objects/request]",
+    "objects: seeded=250  created during run=0  deleted during run=0  alive at end of load=250  cleanup deleted=250 (verified)  remaining=0",
+    "ELU:  mean=0.90  p95=1.00  max=1.00   (ceiling 0.80)",
+    "ELD:  median-of-max=1842ms  max=4668ms",
+    "heap: peak=1378MB of 1686MB",
+    "status: 12 of 34 polls NOT available (first at 83s: HTTP 503); status endpoint latency p95=14784ms",
+    "alerts: 31 (first: {\"t\":12.561,\"level\":\"available\",\"elu\":0.9935058851691168,\"errors\":0})",
+    "sample errors: [{\"op\":\"update\",\"status\":502,\"body\":\"{\\\"ok\\\":false,\\\"message\\\":\\\"backend closed connection\\\"}\"},{\"op\":\"update\",\"status\":502,\"body\":\"{\\\"ok\\\":false,\\\"message\\\":\\\"read: connection reset by peer\\\"}\"}]"
+  ],
+  "samples": [
+    {
+      "http": 200,
+      "ms": 119.80287500002305,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.025027874691356884,
+      "eld": 14.262271,
+      "eldP99": 12.779519,
+      "heap": 419655028,
+      "heapLimit": 1767899136,
+      "rss": 904892416,
+      "respAvg": 285.22222222222223,
+      "respMax": 875,
+      "reqTotal": 9,
+      "t": 0.12,
+      "rpm": 50,
+      "inflight": 0,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 1664.2466669999994,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.23399986914880455,
+      "eld": 1002.962943,
+      "eldP99": 15.310847,
+      "heap": 441386352,
+      "heapLimit": 1767899136,
+      "rss": 942120960,
+      "respAvg": 421,
+      "respMax": 865,
+      "reqTotal": 6,
+      "t": 6.786,
+      "rpm": 50,
+      "inflight": 5,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 774.3557499999879,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.9935058851691168,
+      "eld": 2785.017855,
+      "eldP99": 2785.017855,
+      "heap": 634547700,
+      "heapLimit": 1767899136,
+      "rss": 1040314368,
+      "respAvg": 14.142857142857142,
+      "respMax": 36,
+      "reqTotal": 12,
+      "t": 12.561,
+      "rpm": 50,
+      "inflight": 9,
+      "winOk": 1,
+      "winErr": 0,
+      "winP95": 4370.858666999993
+    },
+    {
+      "http": 200,
+      "ms": 3244.7687499999884,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.9941230759201344,
+      "eld": 1847.590911,
+      "eldP99": 1847.590911,
+      "heap": 883785384,
+      "heapLimit": 1767899136,
+      "rss": 1236877312,
+      "respAvg": 2265.6666666666665,
+      "respMax": 13500,
+      "reqTotal": 9,
+      "t": 20.806,
+      "rpm": 50,
+      "inflight": 15,
+      "winOk": 1,
+      "winErr": 0,
+      "winP95": 14120.546917000029
+    },
+    {
+      "http": 200,
+      "ms": 3503.216124999977,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1838.153727,
+      "eldP99": 1838.153727,
+      "heap": 951082028,
+      "heapLimit": 1767899136,
+      "rss": 1467305984,
+      "respAvg": 3145.5,
+      "respMax": 16516,
+      "reqTotal": 10,
+      "t": 29.311,
+      "rpm": 50,
+      "inflight": 20,
+      "winOk": 2,
+      "winErr": 0,
+      "winP95": 18978.990374999965
+    },
+    {
+      "http": 200,
+      "ms": 5402.864082999993,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 3621.781503,
+      "eldP99": 3621.781503,
+      "heap": 865043812,
+      "heapLimit": 1767899136,
+      "rss": 1447800832,
+      "respAvg": 4648.2,
+      "respMax": 18541,
+      "reqTotal": 6,
+      "t": 39.715,
+      "rpm": 50,
+      "inflight": 27,
+      "winOk": 2,
+      "winErr": 0,
+      "winP95": 31402.722500000003
+    },
+    {
+      "http": 200,
+      "ms": 6246.0704999999725,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 3770.679295,
+      "eldP99": 3770.679295,
+      "heap": 1354825472,
+      "heapLimit": 1767899136,
+      "rss": 1884278784,
+      "respAvg": 6856,
+      "respMax": 6856,
+      "reqTotal": 4,
+      "t": 50.961,
+      "rpm": 50,
+      "inflight": 35,
+      "winOk": 1,
+      "winErr": 0,
+      "winP95": 34946.24808300001
+    },
+    {
+      "http": 200,
+      "ms": 1269.4592920000432,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1842.348031,
+      "eldP99": 1842.348031,
+      "heap": 1367835124,
+      "heapLimit": 1767899136,
+      "rss": 1998782464,
+      "respAvg": 981,
+      "respMax": 2024,
+      "reqTotal": 15,
+      "t": 57.231,
+      "rpm": 50,
+      "inflight": 40,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 15656.636667000013,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 4668.260351,
+      "eldP99": 4668.260351,
+      "heap": 1444425372,
+      "heapLimit": 1767899136,
+      "rss": 2049986560,
+      "respAvg": 23020,
+      "respMax": 45414,
+      "reqTotal": 6,
+      "t": 77.889,
+      "rpm": 50,
+      "inflight": 27,
+      "winOk": 17,
+      "winErr": 13,
+      "winP95": 54435.19104199996
+    },
+    {
+      "http": 503,
+      "ms": 351.4737919999752,
+      "level": "HTTP 503",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 83.242,
+      "rpm": 50,
+      "inflight": 0,
+      "winOk": 13,
+      "winErr": 19,
+      "winP95": 57641.59516699996
+    },
+    {
+      "http": 503,
+      "ms": 109.4910830000299,
+      "level": "HTTP 503",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 88.351,
+      "rpm": 50,
+      "inflight": 0,
+      "winOk": 0,
+      "winErr": 4,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 170.08604200003901,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.9943397284943246,
+      "eld": 2499.805183,
+      "eldP99": 2499.805183,
+      "heap": 651154964,
+      "heapLimit": 1767899136,
+      "rss": 833773568,
+      "respAvg": 0,
+      "respMax": 0,
+      "reqTotal": 1,
+      "t": 93.523,
+      "rpm": 50,
+      "inflight": 0,
+      "winOk": 0,
+      "winErr": 4,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 3676.875,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.9332746118664438,
+      "eld": 1800.404991,
+      "eldP99": 420.216831,
+      "heap": 634729428,
+      "heapLimit": 1767899136,
+      "rss": 972443648,
+      "respAvg": 9.833333333333334,
+      "respMax": 41,
+      "reqTotal": 8,
+      "t": 102.2,
+      "rpm": 50,
+      "inflight": 8,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 5925.3817090000375,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1841.299455,
+      "eldP99": 1841.299455,
+      "heap": 758688256,
+      "heapLimit": 1767899136,
+      "rss": 1273917440,
+      "respAvg": 3,
+      "respMax": 3,
+      "reqTotal": 10,
+      "t": 113.127,
+      "rpm": 50,
+      "inflight": 17,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 775.3570419999887,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.7789541508152441,
+      "eld": 1830.813695,
+      "eldP99": 420.741119,
+      "heap": 584740804,
+      "heapLimit": 1767899136,
+      "rss": 937996288,
+      "respAvg": 747.2857142857143,
+      "respMax": 2908,
+      "reqTotal": 5,
+      "t": 118.903,
+      "rpm": 50,
+      "inflight": 20,
+      "winOk": 1,
+      "winErr": 0,
+      "winP95": 3786.7267090000096
+    },
+    {
+      "http": 200,
+      "ms": 14784.264208000037,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 2589.982719,
+      "eldP99": 2589.982719,
+      "heap": 1207424132,
+      "heapLimit": 1767899136,
+      "rss": 1809637376,
+      "respAvg": 1032.75,
+      "respMax": 2063,
+      "reqTotal": 8,
+      "t": 138.689,
+      "rpm": 50,
+      "inflight": 33,
+      "winOk": 4,
+      "winErr": 0,
+      "winP95": 38872.54933299997
+    },
+    {
+      "http": 0,
+      "ms": 8355.142042000021,
+      "level": "HTTP 0",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 152.046,
+      "rpm": 50,
+      "inflight": 33,
+      "winOk": 3,
+      "winErr": 8,
+      "winP95": 35527.489458
+    },
+    {
+      "http": 200,
+      "ms": 10514.084291999985,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 3328.180223,
+      "eldP99": 3328.180223,
+      "heap": 1143913216,
+      "heapLimit": 1767899136,
+      "rss": 1771405312,
+      "respAvg": 6923,
+      "respMax": 27685,
+      "reqTotal": 11,
+      "t": 167.561,
+      "rpm": 50,
+      "inflight": 27,
+      "winOk": 18,
+      "winErr": 1,
+      "winP95": 57450.227334000054
+    },
+    {
+      "http": 429,
+      "ms": 10331.80270900001,
+      "level": "HTTP 429",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 182.894,
+      "rpm": 50,
+      "inflight": 39,
+      "winOk": 1,
+      "winErr": 0,
+      "winP95": 42671.66516699997
+    },
+    {
+      "http": 503,
+      "ms": 110.84787499997765,
+      "level": "HTTP 503",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 188.005,
+      "rpm": 50,
+      "inflight": 0,
+      "winOk": 20,
+      "winErr": 23,
+      "winP95": 53137.645499999984
+    },
+    {
+      "http": 503,
+      "ms": 106.89329199999338,
+      "level": "HTTP 503",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 193.113,
+      "rpm": 50,
+      "inflight": 0,
+      "winOk": 0,
+      "winErr": 4,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 2798.3711669999757,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 0.9243353273710023,
+      "eld": 1789.919231,
+      "eldP99": 438.829055,
+      "heap": 791798396,
+      "heapLimit": 1767899136,
+      "rss": 1055600640,
+      "respAvg": 96.75,
+      "respMax": 406,
+      "reqTotal": 11,
+      "t": 200.913,
+      "rpm": 50,
+      "inflight": 6,
+      "winOk": 0,
+      "winErr": 1,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 6049.20199999999,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1911.554047,
+      "eldP99": 1911.554047,
+      "heap": 876528848,
+      "heapLimit": 1767899136,
+      "rss": 1202065408,
+      "respAvg": 58.333333333333336,
+      "respMax": 145,
+      "reqTotal": 13,
+      "t": 211.962,
+      "rpm": 50,
+      "inflight": 15,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 8149.8187920000055,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1867.513855,
+      "eldP99": 1867.513855,
+      "heap": 902473612,
+      "heapLimit": 1767899136,
+      "rss": 1358655488,
+      "respAvg": 3,
+      "respMax": 3,
+      "reqTotal": 9,
+      "t": 225.113,
+      "rpm": 50,
+      "inflight": 26,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 429,
+      "ms": 10358.793957999966,
+      "level": "HTTP 429",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 240.473,
+      "rpm": 50,
+      "inflight": 33,
+      "winOk": 1,
+      "winErr": 5,
+      "winP95": 3928.0995840000105
+    },
+    {
+      "http": 200,
+      "ms": 948.0389580000192,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1129.316351,
+      "eldP99": 1129.316351,
+      "heap": 714500920,
+      "heapLimit": 1767899136,
+      "rss": 1177493504,
+      "respAvg": 1426.75,
+      "respMax": 2859,
+      "reqTotal": 5,
+      "t": 246.423,
+      "rpm": 50,
+      "inflight": 37,
+      "winOk": 0,
+      "winErr": 1,
+      "winP95": 0
+    },
+    {
+      "http": 200,
+      "ms": 2420.2633749999804,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1167.065087,
+      "eldP99": 1167.065087,
+      "heap": 1037004796,
+      "heapLimit": 1767899136,
+      "rss": 1462132736,
+      "respAvg": 162,
+      "respMax": 480,
+      "reqTotal": 11,
+      "t": 253.844,
+      "rpm": 50,
+      "inflight": 15,
+      "winOk": 15,
+      "winErr": 13,
+      "winP95": 55996.915958
+    },
+    {
+      "http": 200,
+      "ms": 6241.866999999969,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 1170.210815,
+      "eldP99": 1170.210815,
+      "heap": 925285796,
+      "heapLimit": 1767899136,
+      "rss": 1496420352,
+      "respAvg": 2610.1,
+      "respMax": 21744,
+      "reqTotal": 14,
+      "t": 265.086,
+      "rpm": 50,
+      "inflight": 23,
+      "winOk": 1,
+      "winErr": 0,
+      "winP95": 22112.871791000012
+    },
+    {
+      "http": 200,
+      "ms": 7001.295334000024,
+      "level": "available",
+      "hasMetrics": true,
+      "elu": 1,
+      "eld": 0,
+      "eldP99": 0.000511,
+      "heap": 1167908664,
+      "heapLimit": 1767899136,
+      "rss": 1809252352,
+      "respAvg": 0,
+      "respMax": 0,
+      "reqTotal": 7,
+      "t": 277.088,
+      "rpm": 50,
+      "inflight": 33,
+      "winOk": 0,
+      "winErr": 0,
+      "winP95": 0
+    },
+    {
+      "http": 503,
+      "ms": 117.37845800002106,
+      "level": "HTTP 503",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 282.206,
+      "rpm": 50,
+      "inflight": 0,
+      "winOk": 19,
+      "winErr": 18,
+      "winP95": 48622.66037499998
+    },
+    {
+      "http": 503,
+      "ms": 107.37187499995343,
+      "level": "HTTP 503",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 287.315,
+      "rpm": 50,
+      "inflight": 0,
+      "winOk": 0,
+      "winErr": 4,
+      "winP95": 0
+    },
+    {
+      "http": 503,
+      "ms": 114.89616699994076,
+      "level": "HTTP 503",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 292.431,
+      "rpm": 50,
+      "inflight": 0,
+      "winOk": 0,
+      "winErr": 4,
+      "winP95": 0
+    },
+    {
+      "http": 503,
+      "ms": 115.19995799998287,
+      "level": "HTTP 503",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 297.548,
+      "rpm": 50,
+      "inflight": 0,
+      "winOk": 0,
+      "winErr": 5,
+      "winP95": 0
+    },
+    {
+      "http": 503,
+      "ms": 110.6433749999851,
+      "level": "HTTP 503",
+      "hasMetrics": false,
+      "elu": null,
+      "eld": null,
+      "eldP99": null,
+      "heap": null,
+      "heapLimit": null,
+      "rss": null,
+      "respAvg": null,
+      "respMax": null,
+      "reqTotal": null,
+      "t": 302.661,
+      "rpm": 50,
+      "inflight": 0,
+      "winOk": 0,
+      "winErr": 2,
+      "winP95": 0
+    }
+  ],
+  "latency": {
+    "create": [],
+    "update": [
+      4370.858666999993,
+      14120.546917000029,
+      18978.990374999965,
+      18882.06150000001,
+      31402.722500000003,
+      30417.102374999988,
+      34946.24808300001,
+      45949.10495800001,
+      39769.061000000045,
+      19355.040042000008,
+      31383.123541000008,
+      49470.21637500002,
+      43520.14833300002,
+      30336.120958000014,
+      29153.46416699997,
+      32775.80633400002,
+      52105.184624999994,
+      50975.601708,
+      41406.44199999998,
+      25806.682750000036,
+      28216.132666999998,
+      36652.390625,
+      48722.49924999999,
+      54435.19104199996,
+      52459.470500000054,
+      39270.97212500003,
+      35674.46299999999,
+      45326.610042000015,
+      53797.71545800002,
+      40610.96104199998,
+      56289.82266599999,
+      32277.871083000035,
+      37100.15850000002,
+      43136.84779099998,
+      57641.59516699996,
+      27622.34362499998,
+      42056.01870800002,
+      3786.7267090000096,
+      12964.150874999992,
+      38872.54933299997,
+      17170.96779200004,
+      17994.622042000003,
+      20811.99791699997,
+      23770.614249999984,
+      35527.489458,
+      45154.87574999995,
+      41560.902084,
+      56022.36029099999,
+      39216.66266699997,
+      50051.619915999996,
+      48873.373291999975,
+      53707.62558400002,
+      42906.40762500005,
+      47726.70499999996,
+      52555.70804200001,
+      57450.227334000054,
+      44250.859707999974,
+      55095.988625,
+      51520.12179200002,
+      38314.42283299996,
+      46736.378624999954,
+      29445.77141699998,
+      31615.41862499999,
+      42671.66516699997,
+      28610.574290999968,
+      37056.050667,
+      26258.468374999997,
+      31076.217249999987,
+      27475.527375000005,
+      41934.83562499995,
+      44394.34025000001,
+      40831.17837500002,
+      30034.624624999997,
+      34858.083375000046,
+      49342.57154199999,
+      51828.21266599995,
+      53137.645499999984,
+      25521.423667000025,
+      33945.995375,
+      47216.803041999985,
+      24403.266208000015,
+      32823.44625000004,
+      38859.34583299997,
+      43724.38949999999,
+      3928.0995840000105,
+      46132.65862499998,
+      43739.09700000001,
+      50985.05045799998,
+      48607.464749999985,
+      37799.12137499999,
+      42607.95749999996,
+      45019.67254100001,
+      39018.73220800003,
+      52260.31908400002,
+      53504.984,
+      55996.915958,
+      54848.381209000014,
+      50065.89954200003,
+      40463.36516699998,
+      47684.869084000005,
+      22112.871791000012,
+      21417.865625000035,
+      29863.223958000075,
+      22663.647041999968,
+      32311.473667000013,
+      27524.05462499993,
+      35976.43995800003,
+      26382.00691699999,
+      23985.874917000066,
+      34833.35479200003,
+      37289.05337499996,
+      45768.63645799999,
+      44647.574208000035,
+      39898.16304200003,
+      25498.225000000035,
+      47202.922166000004,
+      43669.055333999975,
+      29274.928209000034,
+      31697.93299999996,
+      48622.66037499998
+    ],
+    "delete": []
+  },
+  "errors": {
+    "create": [],
+    "update": [
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.92.46:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.92.46:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.92.46:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.92.46:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 0,
+        "body": "\"TimeoutError: The operation was aborted due to timeout\""
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.92.46:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.225.23:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.225.23:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.225.23:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.225.23:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.225.23:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.225.23:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 429,
+        "body": "{\"ok\":false,\"message\":\"TLS handshake timeout: Post \\\"https://100.65.225.23:5601/api/saved_objects/_bulk_get\\\": net/http: TLS handshake timeout\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"read: connection reset by peer\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 502,
+        "body": "{\"ok\":false,\"message\":\"backend closed connection\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      },
+      {
+        "status": 503,
+        "body": "{\"ok\":false,\"message\":\"The requested resource is currently unavailable.\"}"
+      }
+    ],
+    "delete": []
+  }
+}

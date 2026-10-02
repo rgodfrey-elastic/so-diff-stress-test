@@ -54,30 +54,70 @@ Three server conditions tested across five matrix scripts.
 
 ## run_matrix.sh — Individual Updates
 
-This script simulates a realistic mix of saved object operations — creates, updates, and deletes — fired one at a time. Each request targets a single object from the pool. It is the closest approximation to normal Kibana usage patterns, where a user saves a dashboard or modifies a visualization.
+Simulates a realistic mix of saved object operations — creates, updates, and deletes — fired one at a time. Closest approximation to normal Kibana usage. off and audit are within noise (±7%, no consistent direction) across all levels. diff adds ~10–17% latency, growing in ELU with load.
 
-Five load levels progressively increase RPM and pool size. L4 specifically uses a small pool with complex objects (2000 panels, all fields updated) to maximize the per-object diff cost. L5 is a ramp test that starts at 50 RPM and doubles every 60 seconds up to 400 RPM, revealing how the server degrades as load increases over time.
+### L1 — baseline: 20 RPM, pool=5
 
-| Level | Shape | off p50 | audit p50 | diff p50 | off ELU | audit ELU | diff ELU | errors | server down (polls) |
-|---|---|---|---|---|---|---|---|---|---|
-| L1 baseline | 20 RPM, pool=5 | 527 ms | 597 ms | 701 ms | 0.114 | 0.161 | 0.150 | — | 0 / 0 / 0 |
-| L2 target | 50 RPM, pool=10 | 662 ms | 711 ms | 731 ms | 0.175 | 0.171 | 0.189 | — | 0 / 0 / 0 |
-| L3 heavy | 100 RPM, pool=10 | 725 ms | 690 ms | 745 ms | 0.195 | 0.192 | 0.229 | — | 0 / 0 / 0 |
-| L4 worst shape | 100 RPM, pool=5, all-fields | 1,240 ms | 1,262 ms | 1,451 ms | 0.275 | 0.267 | 0.360 | off:2, dif:2 | 0 / 0 / 0 |
-| L5 ramp | 50→400 RPM | 779 ms | 766 ms | 893 ms | 0.312 | 0.304 | 0.458 | dif:1 | 0 / 0 / 0 |
+Low-load floor. Establishes baseline latency for all three conditions at the lowest RPM and pool size.
 
-- off and audit track within ±7% across all levels with no consistent direction — within noise.
-- diff adds ~10–17% latency and grows in ELU with load (+0.085 at L4, +0.146 at L5).
-
-### Time-series
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 527 ms | 597 ms | 701 ms |
+| ELU max | 0.114 | 0.161 | 0.150 |
+| errors | — | — | — |
+| server down | 0 | 0 | 0 |
 
 ![L1 — 20 RPM, pool=5](ts_matrix_L1.png)
 
+### L2 — target: 50 RPM, pool=10
+
+Realistic production write rate. All three conditions comfortably below ELU ceiling. diff adds +10% latency.
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 662 ms | 711 ms | 731 ms |
+| ELU max | 0.175 | 0.171 | 0.189 |
+| errors | — | — | — |
+| server down | 0 | 0 | 0 |
+
 ![L2 — 50 RPM, pool=10](ts_matrix_L2.png)
+
+### L3 — heavy: 100 RPM, pool=10
+
+Double the RPM of L2. All three conditions remain stable; diff ELU begins to diverge slightly (+0.034 vs off).
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 725 ms | 690 ms | 745 ms |
+| ELU max | 0.195 | 0.192 | 0.229 |
+| errors | — | — | — |
+| server down | 0 | 0 | 0 |
 
 ![L3 — 100 RPM, pool=10](ts_matrix_L3.png)
 
+### L4 — worst shape: 100 RPM, pool=5, all-fields
+
+Small pool forces high object reuse; all fields updated every tick maximises diff cost per object. Highest diff ELU delta of any individual-update level (+0.085 vs off).
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 1,240 ms | 1,262 ms | 1,451 ms |
+| ELU max | 0.275 | 0.267 | 0.360 |
+| errors | 2 | — | 2 |
+| server down | 0 | 0 | 0 |
+
 ![L4 — 100 RPM, pool=5, all-fields](ts_matrix_L4.png)
+
+### L5 — ramp: 50→400 RPM
+
+Starts at 50 RPM and doubles every 60 seconds up to 400 RPM. Shows how the server degrades under increasing load. Highest diff ELU of any individual-update level (+0.146 vs off).
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 779 ms | 766 ms | 893 ms |
+| ELU max | 0.312 | 0.304 | 0.458 |
+| errors | — | — | 1 |
+| server down | 0 | 0 | 0 |
 
 ![L5 — ramp 50→400 RPM](ts_matrix_L5.png)
 
@@ -85,28 +125,57 @@ Five load levels progressively increase RPM and pool size. L4 specifically uses 
 
 ## run_bulk_matrix.sh — Single-Batch Bulk Updates
 
-This script represents the worst-case scenario for the diff feature: every tick fires a single `_bulk_update` request that updates every object in the pool simultaneously. In Kibana this maps to operations like saving a space with many shared objects, or a migration that bulk-writes hundreds of saved objects in one call.
+Every tick fires a single `_bulk_update` covering the entire pool. Before writing, the diff engine fetches current state of every object via one mget — this before-state fetch serialises with diff computation and is the dominant cost. Pool size is the primary driver. off and audit are within noise at all levels.
 
-The critical difference for diff is that before writing, the server must fetch the current state of every object in the pool via a single `_bulk_get` to ES — this is the "before-state" needed to compute the diff. At pool=100 that is one mget for 100 documents, at pool=700 it is one mget for 700 documents, all before any diff computation begins. Pool size is the primary driver of cost here.
+### P100 — pool=100
 
-| Pool | off p50 | audit p50 | diff p50 | diff overhead | off ELU | audit ELU | diff ELU | diff errors | server down off/aud/dif |
-|---|---|---|---|---|---|---|---|---|---|
-| P100 | 3,319 ms | 3,134 ms | 5,436 ms | +64% | 0.508 | 0.496 | **0.823** ⚠️ | 0 | 0 / 0 / 0 |
-| P250 | 6,467 ms | 6,364 ms | 12,867 ms | +99% | 0.926 | 0.933 | 0.846 | 0 | 0 / 0 / 0 |
-| P500 | 12,581 ms | 11,270 ms | 40,739 ms | +224% | 0.965 | 0.987 | 1.000 | 3 | 0 / 0 / **4** |
-| P700 | 16,084 ms | 16,140 ms | 46,687 ms | +190% | 0.988 | 1.000 | 1.000 | 4 | **1** / **3** / **9** |
+Smallest bulk pool. Diff crosses the 0.80 ELU serverless ceiling. Audit ELU is indistinguishable from off.
 
-- **P100**: diff crosses the 0.80 ELU ceiling (0.823). Audit ELU (0.496) is indistinguishable from off (0.508).
-- **P250–P700**: off and audit have nearly identical latency across all four levels. Diff latency is 2–4× due to the mget before-state fetch for all N objects being serialised with diff compute.
-- P500 audit p50 (11,270ms) appears lower than off (12,581ms) — variance near saturation, not a real effect.
-
-### Time-series
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 3,319 ms | 3,134 ms | 5,436 ms (+64%) |
+| ELU max | 0.508 | 0.496 | **0.823** ⚠️ |
+| errors | 0 | 0 | 0 |
+| server down | 0 | 0 | 0 |
 
 ![P100 — pool=100, single-batch](ts_bulk_P100.png)
 
+### P250 — pool=250
+
+Off and audit begin to saturate. Diff latency nearly doubles vs P100 as mget for 250 objects compounds with diff computation.
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 6,467 ms | 6,364 ms | 12,867 ms (+99%) |
+| ELU max | 0.926 | 0.933 | 0.846 |
+| errors | 0 | 0 | 0 |
+| server down | 0 | 0 | 0 |
+
 ![P250 — pool=250, single-batch](ts_bulk_P250.png)
 
+### P500 — pool=500
+
+Off and audit fully saturated. Diff latency blows out to 40 s and the server goes down 4 times. Audit p50 appearing lower than off is variance near saturation, not a real effect.
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 12,581 ms | 11,270 ms | 40,739 ms (+224%) |
+| ELU max | 0.965 | 0.987 | 1.000 |
+| errors | 0 | 0 | 3 |
+| server down | 0 | 0 | **4** |
+
 ![P500 — pool=500, single-batch](ts_bulk_P500.png)
+
+### P700 — pool=700
+
+All conditions saturated. Diff server unavailable 9× during the run; off and audit downtime reflects saturation from write volume alone.
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 16,084 ms | 16,140 ms | 46,687 ms (+190%) |
+| ELU max | 0.988 | 1.000 | 1.000 |
+| errors | 4 | — | 4 |
+| server down | **1** | **3** | **9** |
 
 ![P700 — pool=700, single-batch](ts_bulk_P700.png)
 
@@ -114,27 +183,53 @@ The critical difference for diff is that before writing, the server must fetch t
 
 ## run_blob_matrix.sh — Individual Blob-Mutating Updates
 
-This script targets a specific code path in the diff engine: `applyFieldSizeLimit`. When a field value in the diff exceeds 48 KB, the engine must truncate it before writing to the audit log. This path only runs on fields that actually changed (replace ops), not on unchanged fields (noOps).
+Targets `applyFieldSizeLimit` in the diff engine — values >48 KB are truncated before writing to the audit log. `blob0` is overwritten with new random content each tick (replace op); extra blob fields are unchanged (noOps). Isolates mget + diff compute + field size limiting on large values. off and audit within ±2% across B2–B4; diff adds ~3–8% latency, ES write latency dominates.
 
-Each object is seeded with large blob fields. On every tick, `blob0` is overwritten with new random content, guaranteeing the diff always sees a replace op and always triggers `applyFieldSizeLimit` for that field. The remaining blob fields are unchanged, so they appear as noOps — their cost is just a string comparison. This isolates the combined cost of: mget before-state fetch + diff computation + field size limiting on large values.
+### B1 — pool=5, 1×50KB blob, 10 RPM
 
-| Level | Shape | off p50 | audit p50 | diff p50 | off ELU | audit ELU | diff ELU | server down off/aud/dif |
-|---|---|---|---|---|---|---|---|---|
-| B1 | pool=5, 1×50KB blob, 10 RPM | 1,125 ms | 951 ms | 930 ms | 0.177 | 0.152 | 0.159 | 0 / 0 / 0 |
-| B2 | pool=15, 2×200KB blobs, 30 RPM | 1,112 ms | 1,102 ms | 1,203 ms | 0.175 | 0.171 | 0.184 | 0 / 0 / 0 |
-| B3 | pool=30, 4×200KB blobs, 60 RPM | 990 ms | 983 ms | 1,022 ms | 0.186 | 0.198 | 0.205 | 0 / 0 / 0 |
-| B4 | pool=50, 4×200KB blobs, 100 RPM | 1,119 ms | 1,104 ms | 1,203 ms | 0.210 | 0.211 | 0.257 | 0 / 0 / 0 |
+Smallest blob test. Audit p50 slightly below off — noise at low RPM where fewer samples are collected.
 
-- off and audit within ±2% across B2–B4. B1 audit (951ms) is slightly lower than off (1,125ms) — noise at 10 RPM where fewer total samples are collected.
-- diff adds ~3–8% latency and a small ELU bump (+0.047 at B4). ES write latency dominates.
-
-### Time-series
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 1,125 ms | 951 ms | 930 ms |
+| ELU max | 0.177 | 0.152 | 0.159 |
+| server down | 0 | 0 | 0 |
 
 ![B1 — pool=5, 1×50KB blob, 10 RPM](ts_blob_B1.png)
 
+### B2 — pool=15, 2×200KB blobs, 30 RPM
+
+Two medium blobs; blob1 is a noOp. off and audit within ±1%.
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 1,112 ms | 1,102 ms | 1,203 ms |
+| ELU max | 0.175 | 0.171 | 0.184 |
+| server down | 0 | 0 | 0 |
+
 ![B2 — pool=15, 2×200KB blobs, 30 RPM](ts_blob_B2.png)
 
+### B3 — pool=30, 4×200KB blobs, 60 RPM
+
+Four large blobs; blob1–blob3 are noOps. Higher throughput; diff adds +3% latency.
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 990 ms | 983 ms | 1,022 ms |
+| ELU max | 0.186 | 0.198 | 0.205 |
+| server down | 0 | 0 | 0 |
+
 ![B3 — pool=30, 4×200KB blobs, 60 RPM](ts_blob_B3.png)
+
+### B4 — pool=50, 4×200KB blobs, 100 RPM
+
+Stress load with large blobs. Diff adds +8% latency and +0.047 ELU. ES write latency still dominates.
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 1,119 ms | 1,104 ms | 1,203 ms |
+| ELU max | 0.210 | 0.211 | 0.257 |
+| server down | 0 | 0 | 0 |
 
 ![B4 — pool=50, 4×200KB blobs, 100 RPM](ts_blob_B4.png)
 
@@ -142,34 +237,77 @@ Each object is seeded with large blob fields. On every tick, `blob0` is overwrit
 
 ## run_bulk_blob_matrix.sh — Single-Batch Bulk Blob Updates
 
-This script combines the two most expensive aspects of the diff feature: bulk updates (all objects in one request) and blob fields (large values that trigger `applyFieldSizeLimit`). Every tick fires one `_bulk_update` covering the entire pool, and `blob0` is mutated on every object every tick.
+Combines bulk updates and blob fields — the two most expensive aspects of the diff feature. Every tick fires one `_bulk_update` covering the entire pool; `blob0` is mutated on every object. Pool capped at 17 (17×50KB = 850KB, near the 1 MB Kibana limit). Later levels raise blob field count and RPM to compound cost. Audit is within noise of off at all levels.
 
-The pool is capped at 17 objects because the Kibana request size limit is ~1 MB — at 50 KB per blob, 17 objects × 50 KB = 850 KB, which is the largest safe payload. The later levels (B5, B6) increase the number of blob fields per object to raise the mget response size and the number of `applyFieldSizeLimit` calls per request, and increase RPM to put multiple requests in flight simultaneously.
+### B1 — pool=5, 1 blob, 3 RPM
 
-| Level | Shape | off p50 | audit p50 | diff p50 | off ELU | audit ELU | diff ELU | server down off/aud/dif |
-|---|---|---|---|---|---|---|---|---|
-| B1 | pool=5, 1 blob, 3 RPM | 1,147 ms | 1,372 ms | 1,636 ms | 0.171 | 0.167 | 0.189 | 0 / 0 / 0 |
-| B2 | pool=10, 1 blob, 3 RPM | 1,665 ms | 1,736 ms | 1,952 ms | 0.146 | 0.184 | 0.238 | 0 / 0 / 0 |
-| B3 | pool=5, 3 blobs, 3 RPM | 1,537 ms | 1,360 ms | 1,592 ms | 0.168 | 0.165 | 0.194 | 0 / 0 / 0 |
-| B4 | pool=10, 3 blobs, 3 RPM | 1,921 ms | 1,865 ms | 2,150 ms | 0.188 | 0.190 | 0.234 | 0 / 0 / 0 |
-| B5 | pool=17, 5 blobs, 20 RPM | 1,876 ms | 1,829 ms | 2,579 ms | 0.301 | 0.285 | **0.578** | 0 / 0 / 0 |
-| B6 | pool=17, 10 blobs, 60 RPM | 2,178 ms | 2,010 ms | 3,563 ms | 0.705 | 0.635 | **1.000** 🔴 | 0 / 0 / 0 |
+Only ~15 total requests per run — high variance. Treat p50 as directional only; ELU (0.171 vs 0.167) confirms no real audit overhead.
 
-- **B1 and B2** run at 3 RPM, producing only ~15 requests per 300s run. p50 from 15 samples has high variance — B1 audit (+20% vs off) and B2 audit (+4%) should be treated as directional. B1 ELU is essentially the same (0.171 vs 0.167), consistent with no real overhead.
-- **B3–B6**: audit is within noise of off (trending slightly lower at B3–B6), consistent with all other matrices.
-- **diff**: moderate overhead at B3/B4 (+4–12%), growing to severe at B5 (ELU +92%) and B6 (ELU 1.0, +64% latency).
-
-### Time-series
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 1,147 ms | 1,372 ms | 1,636 ms |
+| ELU max | 0.171 | 0.167 | 0.189 |
+| server down | 0 | 0 | 0 |
 
 ![B1 — pool=5, 1 blob, 3 RPM](ts_bulk_blob_B1.png)
 
+### B2 — pool=10, 1 blob, 3 RPM
+
+Doubles the pool at the same sparse rate. Still ~15 requests; treat as directional.
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 1,665 ms | 1,736 ms | 1,952 ms |
+| ELU max | 0.146 | 0.184 | 0.238 |
+| server down | 0 | 0 | 0 |
+
 ![B2 — pool=10, 1 blob, 3 RPM](ts_bulk_blob_B2.png)
+
+### B3 — pool=5, 3 blobs, 3 RPM
+
+Adds two extra blob fields as noOps per object. Audit within noise of off.
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 1,537 ms | 1,360 ms | 1,592 ms |
+| ELU max | 0.168 | 0.165 | 0.194 |
+| server down | 0 | 0 | 0 |
 
 ![B3 — pool=5, 3 blobs, 3 RPM](ts_bulk_blob_B3.png)
 
+### B4 — pool=10, 3 blobs, 3 RPM
+
+Combines larger pool and more noOp blobs. Audit within ±3% of off.
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 1,921 ms | 1,865 ms | 2,150 ms |
+| ELU max | 0.188 | 0.190 | 0.234 |
+| server down | 0 | 0 | 0 |
+
 ![B4 — pool=10, 3 blobs, 3 RPM](ts_bulk_blob_B4.png)
 
+### B5 — pool=17, 5 blobs, 20 RPM
+
+Max pool size. Requests start overlapping at 20 RPM. Diff ELU nearly doubles vs off (+92%).
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 1,876 ms | 1,829 ms | 2,579 ms |
+| ELU max | 0.301 | 0.285 | **0.578** |
+| server down | 0 | 0 | 0 |
+
 ![B5 — pool=17, 5 blobs, 20 RPM](ts_bulk_blob_B5.png)
+
+### B6 — pool=17, 10 blobs, 60 RPM
+
+10 blob fields doubles the mget response size; 60 RPM puts 2–3 requests in flight simultaneously. Diff saturates ELU to 1.0.
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 2,178 ms | 2,010 ms | 3,563 ms |
+| ELU max | 0.705 | 0.635 | **1.000** 🔴 |
+| server down | 0 | 0 | 0 |
 
 ![B6 — pool=17, 10 blobs, 60 RPM](ts_bulk_blob_B6.png)
 
@@ -177,31 +315,70 @@ The pool is capped at 17 objects because the Kibana request size limit is ~1 MB 
 
 ## run_bulk_get_matrix.sh — Read-Only Bulk Gets
 
-This script is a control test, not a feature test. It fires read-only `_bulk_get` requests and never writes anything. Its purpose is to measure the baseline cost of the mget operation itself — the same ES call the diff engine performs before every bulk update to fetch the before-state of all objects being modified.
+Control test — fires read-only `_bulk_get` requests only. Measures the baseline cost of the mget operation the diff engine adds before every bulk update. All three conditions are essentially identical at G1–G4, confirming overhead in the bulk update tests comes from diff computation, not the mget itself.
 
-By comparing off, audit, and diff on read-only gets, we can confirm that the diff engine's mget adds no overhead to the read path (it only runs during writes), and establish what a "free" mget actually costs at different pool sizes. If all three conditions are identical here (which they are for G1–G4), it confirms the overhead seen in the bulk update tests is from diff computation, not the mget itself.
+### G1 — pool=100, 10 RPM
 
-| Level | Shape | off p50 | audit p50 | diff p50 | off ELU | audit ELU | diff ELU | errors off/aud/dif | server down off/aud/dif |
-|---|---|---|---|---|---|---|---|---|---|
-| G1 | pool=100, 10 RPM | 2,347 ms | 2,385 ms | 2,290 ms | 0.363 | 0.395 | 0.358 | 0 / 0 / 0 | 0 / 0 / 0 |
-| G2 | pool=100, 20 RPM | 1,816 ms | 1,806 ms | 1,831 ms | 0.529 | 0.626 | 0.599 | 0 / 0 / 0 | 0 / 0 / 0 |
-| G3 | pool=50, 50 RPM | 909 ms | 925 ms | 929 ms | 0.568 | 0.551 | 0.566 | 0 / 0 / 0 | 0 / 0 / 0 |
-| G4 | pool=100, 50 RPM | 1,867 ms | 1,913 ms | 1,891 ms | 0.914 | 0.998 | 0.991 | 0 / 0 / 0 | 0 / 0 / 0 |
-| G5 | pool=250, 50 RPM | 33,653 ms | 39,271 ms | 38,487 ms | 1.000 | 1.000 | 1.000 | 61 / 129 / 115 | **1** / **12** / **5** |
+One get every 6 s — low concurrency. All three conditions within ±4%.
 
-- **G1–G3**: all three conditions essentially identical. Gets don't touch the diff engine — expected.
-- **G4**: latency is the same across all conditions (within ±3%). Audit ELU (0.998) and diff ELU (0.991) are both elevated vs off (0.914) — all are near-saturation and the difference is likely variance, not real overhead (gets don't trigger audit events or diff computation).
-- **G5**: all three conditions fully saturate. Results vary with server state and are not comparable across conditions.
-
-### Time-series
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 2,347 ms | 2,385 ms | 2,290 ms |
+| ELU max | 0.363 | 0.395 | 0.358 |
+| errors | 0 | 0 | 0 |
+| server down | 0 | 0 | 0 |
 
 ![G1 — pool=100, 10 RPM](ts_bulk_get_G1.png)
 
+### G2 — pool=100, 20 RPM
+
+One get every 3 s — requests begin overlapping. All conditions within ±8%.
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 1,816 ms | 1,806 ms | 1,831 ms |
+| ELU max | 0.529 | 0.626 | 0.599 |
+| errors | 0 | 0 | 0 |
+| server down | 0 | 0 | 0 |
+
 ![G2 — pool=100, 20 RPM](ts_bulk_get_G2.png)
+
+### G3 — pool=50, 50 RPM
+
+High concurrency, smaller payload. All three conditions essentially identical.
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 909 ms | 925 ms | 929 ms |
+| ELU max | 0.568 | 0.551 | 0.566 |
+| errors | 0 | 0 | 0 |
+| server down | 0 | 0 | 0 |
 
 ![G3 — pool=50, 50 RPM](ts_bulk_get_G3.png)
 
+### G4 — pool=100, 50 RPM
+
+All conditions near-saturated. Latency within ±3% across conditions. ELU variance at saturation is noise, not real overhead from audit or diff.
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 1,867 ms | 1,913 ms | 1,891 ms |
+| ELU max | 0.914 | 0.998 | 0.991 |
+| errors | 0 | 0 | 0 |
+| server down | 0 | 0 | 0 |
+
 ![G4 — pool=100, 50 RPM](ts_bulk_get_G4.png)
+
+### G5 — pool=250, 50 RPM (saturated)
+
+All three conditions fully saturate. Results dominated by server chaos; not comparable across conditions.
+
+| Metric | off | audit | diff |
+|---|---|---|---|
+| p50 latency | 33,653 ms | 39,271 ms | 38,487 ms |
+| ELU max | 1.000 | 1.000 | 1.000 |
+| errors | 61 | 129 | 115 |
+| server down | **1** | **12** | **5** |
 
 ![G5 — pool=250, 50 RPM (saturated)](ts_bulk_get_G5.png)
 

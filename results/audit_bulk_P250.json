@@ -1,6 +1,6 @@
 {
   "config": {
-    "target": "https://kibana-pr-281571-elasticsearch-cae2be.kb.eu-west-1.aws.qa.elastic.cloud",
+    "target": "<redacted>",
     "run": "so-stress-1790383014420",
     "username": "admin",
     "authMode": "basic",

@@ -96,20 +96,6 @@ Comparing off→audit isolates the cost of audit event writes. Comparing audit�
 
 ![Bulk blob updates, bulk gets](graphs_row2.png)
 
-### Time-series (latency p95 and ELU over the course of each run)
-
-Each graph below shows how latency and ELU evolved second-by-second during the 300s load phase. The y-axis on the left is the rolling p95 latency of requests that completed in each ~5s polling window. The y-axis on the right is the server ELU — the dashed line marks the 0.80 serverless ceiling. Colored shaded bands indicate periods when the server was unresponsive for that condition.
-
-![run_matrix.sh — Individual Updates](ts_matrix.png)
-
-![run_bulk_matrix.sh — Single-Batch Bulk Updates](ts_bulk.png)
-
-![run_blob_matrix.sh — Individual Blob Updates](ts_blob.png)
-
-![run_bulk_blob_matrix.sh — Single-Batch Bulk Blob Updates](ts_bulk_blob.png)
-
-![run_bulk_get_matrix.sh — Bulk Gets](ts_bulk_get.png)
-
 ---
 
 ## run_matrix.sh — Individual Updates
@@ -128,6 +114,10 @@ Five load levels progressively increase RPM and pool size. L4 specifically uses 
 
 - off and audit track within ±7% across all levels with no consistent direction — within noise.
 - diff adds ~10–17% latency and grows in ELU with load (+0.085 at L4, +0.146 at L5).
+
+### Time-series
+
+![run_matrix.sh — Individual Updates](ts_matrix.png)
 
 ---
 
@@ -148,6 +138,10 @@ The critical difference for diff is that before writing, the server must fetch t
 - **P250–P700**: off and audit have nearly identical latency across all four levels. Diff latency is 2–4× due to the mget before-state fetch for all N objects being serialised with diff compute.
 - P500 audit p50 (11,270ms) appears lower than off (12,581ms) — variance near saturation, not a real effect.
 
+### Time-series
+
+![run_bulk_matrix.sh — Single-Batch Bulk Updates](ts_bulk.png)
+
 ---
 
 ## run_blob_matrix.sh — Individual Blob-Mutating Updates
@@ -165,6 +159,10 @@ Each object is seeded with large blob fields. On every tick, `blob0` is overwrit
 
 - off and audit within ±2% across B2–B4. B1 audit (951ms) is slightly lower than off (1,125ms) — noise at 10 RPM where fewer total samples are collected.
 - diff adds ~3–8% latency and a small ELU bump (+0.047 at B4). ES write latency dominates.
+
+### Time-series
+
+![run_blob_matrix.sh — Individual Blob Updates](ts_blob.png)
 
 ---
 
@@ -187,6 +185,10 @@ The pool is capped at 17 objects because the Kibana request size limit is ~1 MB 
 - **B3–B6**: audit is within noise of off (trending slightly lower at B3–B6), consistent with all other matrices.
 - **diff**: moderate overhead at B3/B4 (+4–12%), growing to severe at B5 (ELU +92%) and B6 (ELU 1.0, +64% latency).
 
+### Time-series
+
+![run_bulk_blob_matrix.sh — Single-Batch Bulk Blob Updates](ts_bulk_blob.png)
+
 ---
 
 ## run_bulk_get_matrix.sh — Read-Only Bulk Gets
@@ -206,6 +208,10 @@ By comparing off, audit, and diff on read-only gets, we can confirm that the dif
 - **G1–G3**: all three conditions essentially identical. Gets don't touch the diff engine — expected.
 - **G4**: latency is the same across all conditions (within ±3%). Audit ELU (0.998) and diff ELU (0.991) are both elevated vs off (0.914) — all are near-saturation and the difference is likely variance, not real overhead (gets don't trigger audit events or diff computation).
 - **G5**: all three conditions fully saturate. Results vary with server state and are not comparable across conditions.
+
+### Time-series
+
+![run_bulk_get_matrix.sh — Bulk Gets](ts_bulk_get.png)
 
 ---
 
